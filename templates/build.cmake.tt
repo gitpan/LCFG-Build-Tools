@@ -1,0 +1,166 @@
+
+MACRO(lcfg_translate)
+
+[%+ FOREACH file IN trans.keys.sort %]
+CONFIGURE_FILE("[% file %]" "[% trans.item(file) %]" @ONLY)
+[%+ END +%]
+
+ENDMACRO(lcfg_translate)
+
+MACRO(lcfg_add_comp_script compname)
+
+  IF(EXISTS ${compname})
+    INSTALL(PROGRAMS ${compname} DESTINATION ${LCFGCOMP})
+  ENDIF(EXISTS ${compname})
+
+ENDMACRO(lcfg_add_comp_script)
+
+MACRO(lcfg_add_schema schema_name schema_ver)
+
+  SET(schemafile ${schema_name}.def)
+
+  IF(EXISTS ${schemafile})
+    STRING(LENGTH ${schema_ver} schema_length)
+    IF(${schema_length} GREATER 0)
+      SET(deffile ${schema_name}-${schema_ver}.def)
+    ELSE(${schema_length} GREATER 0)
+      SET(deffile ${schema_name}.def)
+    ENDIF(${schema_length} GREATER 0)
+
+    INSTALL(FILES ${schemafile}
+            DESTINATION ${LCFGCLIENTDEF}
+            RENAME ${deffile})
+
+    INSTALL(FILES ${schemafile}
+            DESTINATION ${LCFGSERVERDEF}
+            RENAME ${deffile}
+            COMPONENT defaults)
+
+  ENDIF(EXISTS ${schemafile})
+
+ENDMACRO(lcfg_add_schema)
+
+FIND_PROGRAM(PODSTRIP podselect)
+
+MACRO(pod_strip in out)
+
+  IF(PODSTRIP)
+    EXECUTE_PROCESS(COMMAND ${PODSTRIP} ${in} OUTPUT_FILE ${out})
+  ENDIF(PODSTRIP)
+
+ENDMACRO(pod_strip)
+
+FIND_PROGRAM(POD2MAN pod2man)
+
+MACRO(lcfg_add_man manfile section)
+ 
+  INSTALL(FILES ${manfile} DESTINATION ${LCFGMAN}/man${section})
+
+ENDMACRO(lcfg_add_man)
+
+MACRO(lcfg_add_pod podfile manfile section)
+
+  IF(EXISTS ${podfile})
+    INSTALL(FILES ${podfile} DESTINATION ${LCFGPOD})
+
+    IF(POD2MAN)
+      SET(outfile "${manfile}.${section}")
+
+      IF(LCFG_GROUP)
+        EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --center="${LCFG_GROUP}" --date="${LCFG_DATE}" ${podfile} ${outfile})
+      ELSE(LCFG_GROUP)
+        EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --date="${LCFG_DATE}" ${podfile} ${outfile})
+      ENDIF(LCFG_GROUP)
+
+      lcfg_add_man(${outfile} ${section})
+
+    ENDIF(POD2MAN)
+
+  ENDIF(EXISTS ${podfile})
+
+ENDMACRO(lcfg_add_pod)
+
+MACRO(lcfg_add_comp_pod compname)
+
+  SET(podfile "${compname}.pod")
+  SET(manfile "lcfg-${compname}")
+
+  lcfg_add_pod(${podfile} ${manfile} ${MANSECT})
+
+ENDMACRO(lcfg_add_comp_pod)
+
+SET(PERL_LIBSECT 3 CACHE STRING "Manual section for Perl libraries")
+
+MACRO(lcfg_add_perl_module file modpath)
+
+  STRING( REGEX REPLACE "\\.pm" "" modname ${modpath})
+  STRING( REGEX REPLACE "/" "::" modname ${modname} )
+
+  SET(podfile "${modname}.pod")
+
+  pod_strip(${file} ${podfile})
+  lcfg_add_pod(${podfile} ${modname} ${PERL_LIBSECT})
+
+  GET_FILENAME_COMPONENT(dirname ${modpath} PATH)
+
+  INSTALL(FILES ${file}
+          DESTINATION "${PERL_LIBDIR}/${dirname}")
+
+ENDMACRO(lcfg_add_perl_module)
+
+MACRO(lcfg_add_perl_tree)
+
+  IF(${ARGC} MATCHES 1)
+    SET(dir "${CMAKE_CURRENT_SOURCE_DIR}/${ARGV0}")
+  ELSE(${ARGC} MATCHES 1)
+    SET(dir ${CMAKE_CURRENT_SOURCE_DIR})
+  ENDIF(${ARGC} MATCHES 1)
+
+  FILE(GLOB_RECURSE perlmods RELATIVE ${dir} "*.pm")
+  FOREACH(perlmod ${perlmods})
+    lcfg_add_perl_module("${dir}/${perlmod}" ${perlmod})
+  ENDFOREACH(perlmod)
+
+ENDMACRO(lcfg_add_perl_tree)
+
+MACRO(lcfg_add_program location binfile mansect)
+
+  IF(${ARGC} GREATER 3)
+    IF (${ARGV3} STREQUAL "podstrip")
+      pod_strip(${binfile} "${binfile}.pod")
+      lcfg_add_pod("${binfile}.pod" ${binfile} ${mansect})
+    ENDIF (${ARGV3} STREQUAL "podstrip")
+  ENDIF(${ARGC} GREATER 3)
+
+  IF(EXISTS ${binfile})
+    INSTALL(PROGRAMS ${binfile} DESTINATION ${location})
+  ENDIF(EXISTS ${binfile})
+
+ENDMACRO(lcfg_add_program)
+
+MACRO(lcfg_add_bin binfile)
+  lcfg_add_program(${LCFGBIN} ${binfile} 1 ${ARGV1})
+ENDMACRO(lcfg_add_bin)
+
+MACRO(lcfg_add_sbin binfile)
+  lcfg_add_program(${LCFGSBIN} ${binfile} 8 ${ARGV1})
+ENDMACRO(lcfg_add_sbin)
+
+MACRO(lcfg_add_logrotate)
+
+  IF(EXISTS "logrotate")
+    INSTALL(FILES "logrotate" DESTINATION "${LCFGDATA}/${LCFG_NAME}")
+  ENDIF(EXISTS "logrotate")
+
+ENDMACRO(lcfg_add_logrotate)
+
+MACRO(lcfg_add_component compname)
+
+  lcfg_translate()
+  lcfg_add_comp_script(${compname})
+  lcfg_add_comp_pod(${compname})
+  lcfg_add_schema(${compname} ${LCFG_SCHEMA})
+  lcfg_add_logrotate()
+
+ENDMACRO(lcfg_add_component)
+

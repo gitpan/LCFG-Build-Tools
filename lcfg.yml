@@ -1,0 +1,25 @@
+--- !!perl/hash:LCFG::Build::PkgSpec 
+abstract: LCFG build system tools
+author: 
+  - Stephen Quinney <squinney@inf.ed.ac.uk>
+base: ''
+build: 
+  gencmake: 0
+  remove_input_after_translate: 1
+  translate_before_pack: 1
+date: 09/12/08 15:07:02
+license: gpl
+name: LCFG-Build-Tools
+platforms: 
+  - FedoraCore5
+  - FedoraCore6
+  - ScientificLinux5
+release: 1
+schema: 1
+translate: 
+  - "*.in"
+vcs: 
+  genchangelog: 1
+  logname: Changes
+  type: CVS
+version: 0.0.38

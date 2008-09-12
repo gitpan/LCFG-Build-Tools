@@ -1,0 +1,454 @@
+2008-09-12  CVS: new release
+
+	* Release: 0.0.38
+
+2008-09-12 15:05  squinney
+
+	* Lots of documentation improvements. Various work on making the
+	  file and directory path handling more platform-independent
+
+2008-09-09 11:38  squinney
+
+	* Release: 0.0.37
+
+2008-09-09 11:38  squinney
+
+	* Use make_immutable for each Moose class. According to the docs
+	  this should provide a good speed-up in code loading
+
+2008-09-09 10:59  squinney
+
+	* Release: 0.0.36
+
+2008-09-09 10:59  squinney
+
+	* Removed the genmeta options from the package building tools. Used
+	  Module::Pluggable to add a new LCFG::Build::Utils plugins()
+	  method which lists all available Utils sub-classes. Switched
+	  generate_metadata() and build() to be methods to make it easier
+	  to test for existence and call without a string eval
+
+2008-09-08 14:24  squinney
+
+	* Release: 0.0.35
+
+2008-09-08 14:22  squinney
+
+	* Lots of documentation improvements
+
+2008-09-08 13:33  squinney
+
+	* Release: 0.0.34
+
+2008-09-08 13:32  squinney
+
+	* Now using the new support for removing input files after
+	  substitution. Also corrected a couple of bits in the specfile.
+
+2008-09-08 13:26  squinney
+
+	* Added support for removing input files after macro substitution
+	  has been completed. Also switched the source tar file generation
+	  sequence so that the packing happens last which allows the
+	  inclusion of generated metadata files
+
+2008-09-08 13:24  squinney
+
+	* Added some high-level documentation to LCFG::Build::Tools
+
+2008-09-08 13:23  squinney
+
+	* Improved specfile
+
+2008-09-08 13:23  squinney
+
+	* Updated perl build files
+
+2008-09-08 13:22  squinney
+
+	* Updated package MANIFEST
+
+2008-09-02 12:35  squinney
+
+	* Release: 0.0.33
+
+2008-09-02 12:34  squinney
+
+	* Fixed a problem with pod2man not working if the group argument,
+	  which gets passed into the --center option, was not specified
+
+2008-08-07 13:05  squinney
+
+	* Release: 0.0.32
+
+2008-08-07 13:05  squinney
+
+	* Lots of small changes to satisfy perltidy and perlcritic
+
+2008-08-06 16:49  squinney
+
+	* Release: 0.0.31
+
+2008-08-06 16:49  squinney
+
+	* Added a basic test to check that all Perl modules are loadable.
+	  Also added all the necessary build dependencies so this check can
+	  be carried out in a chroot
+
+2008-08-06 15:25  squinney
+
+	* Release: 0.0.30
+
+2008-08-06 15:24  squinney
+
+	* Added basic MacOSX support, stubs for the ospkg and devospkg
+	  command modules are now supplied
+
+2008-08-05 15:29  squinney
+
+	* Release: 0.0.29
+
+2008-08-05 15:29  squinney
+
+	* Added a new checkmacros command
+
+2008-07-30 21:17  squinney
+
+	* Release: 0.0.28
+
+2008-07-30 21:16  squinney
+
+	* overrode sourceonly and deps attributes from
+	  LCFG::Build::Tool::SRPM  so they don't show up as options for the
+	  srpm command
+
+2008-07-30 21:14  squinney
+
+	* Removed srpm method from LCFG::Build::Tool::RPM as it is no
+	  longer needed
+
+2008-07-30 21:00  squinney
+
+	* switch lcfg-reltool to using LCFG::Build::Tools and updated the
+	  docs a bit
+
+2008-07-30 20:59  squinney
+
+	* Added the srpm command for convenience
+
+2008-07-30 20:58  squinney
+
+	* Documented override of the App::Cmd _prepare_command method in
+	  LCFG::Build::Tools
+
+2008-07-30 20:34  squinney
+
+	* attempt to handle abbreviated command names
+
+2008-07-30 19:53  squinney
+
+	* Fixed LCFG::Build::Tool::Release run method
+
+2008-07-30 19:48  squinney
+
+	* Document why the resultsdir is overridden in
+	  LCFG::Build::Tool::Release
+
+2008-07-30 19:19  squinney
+
+	* Fixed overrides
+
+2008-07-30 19:17  squinney
+
+	* Moved resultsdir option to the top-level LCFG::Build::Tool class
+
+2008-07-30 19:08  squinney
+
+	* Added majorversion and minorversion tools
+
+2008-07-30 17:31  squinney
+
+	* Removed lcfg_add_doc CMake macro as it is unnecessary
+
+2008-07-30 17:30  squinney
+
+	* Added documentation for the commands and the options
+
+2008-07-30 17:28  squinney
+
+	* Added requirement for perl(MooseX::App::Cmd) to the specfile
+
+2008-07-30 16:24  squinney
+
+	* Converted to MooseX::App::Cmd
+
+2008-07-30 15:47  squinney
+
+	* Switched to using App::Cmd
+
+2008-07-25 13:49  squinney
+
+	* Release: 0.0.27
+
+2008-07-25 13:48  squinney
+
+	* Added handling of logrotate files. Improved handling of bin and
+	  sbin files
+
+2008-07-25 13:44  squinney
+
+	* Added INITDIR macro
+
+2008-07-22 16:44  squinney
+
+	* Release: 0.0.26
+
+2008-07-22 16:43  squinney
+
+	* Set MSG variable
+
+2008-07-22 11:40  squinney
+
+	* Release: 0.0.25
+
+2008-07-22 11:39  squinney
+
+	* Added ICONDIR, SCRIPTDIR, HAS_PROC and BOOTCOMP cmake variables.
+	  Also added bash detection
+
+2008-07-22 11:34  squinney
+
+	* Fixed cmake lcfg_add_schema macro so it works for all values
+
+2008-07-18 14:19  squinney
+
+	* Release: 0.0.24
+
+2008-07-18 14:18  squinney
+
+	* Split out from lcfg_add_pod() an lcfg_add_man() macro
+
+2008-07-18 11:59  squinney
+
+	* Release: 0.0.23
+
+2008-07-18 11:59  squinney
+
+	* Added LIBDIR and LIBSECURITYDIR variables. Also now handle the
+	  correct setting of PERL_LIBDIR and PERL_ARCHDIR based on whether
+	  the builder wants site or vendor locations.
+
+2008-07-18 11:57  squinney
+
+	* Added support for installing perl modules with
+	  lcfg_add_perl_module() and lcfg_add_perl_tree().
+
+2008-07-17 16:16  squinney
+
+	* Release: 0.0.22
+
+2008-07-17 16:16  squinney
+
+	* Improved handling of POD files
+
+2008-07-15 11:51  squinney
+
+	* Release: 0.0.21
+
+2008-07-15 11:50  squinney
+
+	* Rewrote the build method in Utils::RPM to avoid using
+	  RPM4::Spec::rpmbuild which appears to be weirdly broken
+
+2008-07-11 15:22  squinney
+
+	* Release: 0.0.20
+
+2008-07-11 15:20  squinney
+
+	* Added detection of the perl executable and fixed usage of lsb
+	  detection for linux
+
+2008-07-11 15:19  squinney
+
+	* Fixed find_trans_files to return relative paths
+
+2008-07-10 10:15  squinney
+
+	* Release: 0.0.19
+
+2008-07-10 10:14  squinney
+
+	* Added a shortcut command for building an srpm. Added some error
+	  handling for when rpmbuild fails
+
+2008-07-10 10:06  squinney
+
+	* Release: 0.0.18
+
+2008-07-10 10:05  squinney
+
+	* Rewrote LCFG::Build::Utils::translate_string() so that it only
+	  substitutes known macros. It is also now much easier to extend
+	  with new macro styles. Changed the behaviour of
+	  LCFG::Build::Utils::translate_macro() so it returns undef for an
+	  unknown macro
+
+2008-07-09 16:56  squinney
+
+	* Release: 0.0.17
+
+2008-07-09 16:56  squinney
+
+	* Fixed mistake with printing out the binary RPM filenames in
+	  Tool::RPM and Tool::DevRPM
+
+2008-07-09 15:21  squinney
+
+	* Release: 0.0.16
+
+2008-07-09 15:20  squinney
+
+	* Fixed bug where Tool::Pack used the devel-tree metadata file
+	  instead of that from the tagged-tree
+
+2008-07-08 10:57  squinney
+
+	* Release: 0.0.15
+
+2008-07-08 10:54  squinney
+
+	* This time the logging of results from Tool::RPM and Tool::DevRPM
+	  might actually be correct...
+
+2008-07-08 10:45  squinney
+
+	* Release: 0.0.14
+
+2008-07-08 10:44  squinney
+
+	* Various documentation improvements
+
+2008-07-08 10:28  squinney
+
+	* Release: 0.0.13
+
+2008-07-08 10:28  squinney
+
+	* Fixed log messages in Tool::RPM and Tool::DevRPM
+
+2008-07-08 10:21  squinney
+
+	* Release: 0.0.12
+
+2008-07-08 10:21  squinney
+
+	* Fixed specfile so that *.in files do not get included
+
+2008-07-08 10:19  squinney
+
+	* Added into the specfile a list of Perl module dependencies which
+	  get missed by the automatic Perl dep finder since they are loaded
+	  through 'require' rather than 'use'
+
+2008-07-07 15:33  squinney
+
+	* Release: 0.0.11
+
+2008-07-07 15:32  squinney
+
+	* Forgot to add the Utils::RPM module into CVS
+
+2008-07-07 15:30  squinney
+
+	* Release: 0.0.10
+
+2008-07-07 15:29  squinney
+
+	* Lots more documentation of modules. Moved various files to .in
+	  versions for macro substitution
+
+2008-07-07 13:00  squinney
+
+	* Release: 0.0.9
+
+2008-07-07 12:59  squinney
+
+	* Documented LCFG::Build::Utils and LCFG::Build::Utils::RPM, also
+	  tidied code to satisfy perllint and perlcritic
+
+2008-07-07 09:49  squinney
+
+	* Release: 0.0.8
+
+2008-07-07 09:49  squinney
+
+	* Extracted metafile templating from Utils::RPM to Utils so it can
+	  be used anywhere. Added a couple of missing module dependencies
+	  and tidied up a couple of sections
+
+2008-06-30 16:40  squinney
+
+	* removed LCFG::Build::Tools::Release as it has been renamed to
+	  LCFG::Build::Tool::Release
+
+2008-06-25 15:51  squinney
+
+	* Release: 0.0.7
+
+2008-06-25 15:50  squinney
+
+	* Fixed prep stage in specfile
+
+2008-06-25 15:48  squinney
+
+	* Release: 0.0.6
+
+2008-06-25 15:48  squinney
+
+	* Moved from static specfile to using macros
+
+2008-06-25 15:41  squinney
+
+	* Release: 0.0.5
+
+2008-06-25 15:41  squinney
+
+	* Added various extra release tools modules
+
+2008-06-25 15:40  squinney
+
+	* Release: 0.0.4
+
+2008-06-04 17:11  squinney
+
+	* Renamed LCFG::Build::Tools to LCFG::Build::Tool
+
+2008-06-04 16:17  squinney
+
+	* removed file
+
+2008-05-28 15:31  squinney
+
+	* Release: 0.0.3
+
+2008-05-13 12:00  squinney
+
+	* Moved lcfg-reltool to this package to simplify dependencies
+
+2008-05-08 09:51  squinney
+
+	* Added more stuff
+
+2008-05-08 09:29  squinney
+
+	* Added lots of stuff
+
+2008-05-06 17:02  squinney
+
+	* Release: 0.0.2
+
+2008-05-06 17:02  squinney
+
+	* Added lots of files to CVS
+
