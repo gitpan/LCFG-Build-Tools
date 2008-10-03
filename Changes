@@ -1,4 +1,20 @@
-2008-09-12  CVS: new release
+2008-10-03  CVS: new release
+
+	* Release: 0.0.39
+
+2008-10-03 13:54  squinney
+
+	* Added a new CMake variable - LCFG_TMPLDIR which is the
+	  component-specific template location. Also added a new CMake
+	  macro - lcfg_add_template() to install template files into that
+	  location
+
+2008-10-03 13:53  squinney
+
+	* Fixed the setting of the OS_VERSION CMake variable on Scientific
+	  Linux machines
+
+2008-09-12 15:07  squinney
 
 	* Release: 0.0.38
 

@@ -2,13 +2,13 @@ package LCFG::Build::Tool::CheckMacros;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: CheckMacros.pm.in,v 1.5 2008/09/12 14:05:30 squinney Exp $
+# $Id: CheckMacros.pm.in,v 1.6 2008/10/03 12:54:51 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/CheckMacros.pm.in,v $
-# $Revision: 1.5 $
+# $Revision: 1.6 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/10/03 12:54:51 $
 
-our $VERSION = '0.0.38';
+our $VERSION = '0.0.39';
 
 use File::Spec ();
 use IO::File ();
@@ -117,6 +117,7 @@ my %buildtime = map { $_ => 'buildtime' } qw(
     CONFIGDIR
     ICONDIR
     SCRIPTDIR
+    LCFG_TMPLDIR
 );
 
 my %linux = map { $_ => 'linux' } qw(
@@ -236,7 +237,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.38
+    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.39
 
 =head1 SYNOPSIS
 

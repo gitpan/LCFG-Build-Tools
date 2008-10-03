@@ -154,6 +154,10 @@ MACRO(lcfg_add_logrotate)
 
 ENDMACRO(lcfg_add_logrotate)
 
+MACRO(lcfg_add_template)
+  INSTALL(FILES ${ARGV} DESTINATION ${LCFG_TMPLDIR})
+ENDMACRO(lcfg_add_template)
+
 MACRO(lcfg_add_component compname)
 
   lcfg_translate()

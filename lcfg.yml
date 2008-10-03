@@ -7,7 +7,7 @@ build:
   gencmake: 0
   remove_input_after_translate: 1
   translate_before_pack: 1
-date: 09/12/08 15:07:02
+date: 10/03/08 13:55:11
 license: gpl
 name: LCFG-Build-Tools
 platforms: 
@@ -22,4 +22,4 @@ vcs:
   genchangelog: 1
   logname: Changes
   type: CVS
-version: 0.0.38
+version: 0.0.39

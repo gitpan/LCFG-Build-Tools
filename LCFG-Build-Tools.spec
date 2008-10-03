@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.38
+Version:        0.0.39
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.38.tar.gz
+Source0:        LCFG-Build-Tools-0.0.39.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,19 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri Sep 12 2008 <<<< Release: 0.0.38 >>>>
+* Fri Oct 03 2008 <<<< Release: 0.0.39 >>>>
+
+* Fri Oct 03 2008 13:54 squinney
+- Added a new CMake variable - LCFG_TMPLDIR which is the
+  component-specific template location. Also added a new CMake
+  macro - lcfg_add_template() to install template files into that
+  location
+
+* Fri Oct 03 2008 13:53 squinney
+- Fixed the setting of the OS_VERSION CMake variable on Scientific
+  Linux machines
+
+* Fri Sep 12 2008 15:07 squinney
 
 * Fri Sep 12 2008 15:05 squinney
 - Lots of documentation improvements. Various work on making the

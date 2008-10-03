@@ -42,7 +42,7 @@ ENDIF()
 
 IF(${DISTRIB_ID} STREQUAL "ScientificSL")
   SET(OS_RELEASE ${DISTRIB_RELEASE})
-  string(REGEX REPLACE "^([0-9]+)" "\\1" OS_RELEASE ${OS_RELEASE})
+  string(REGEX REPLACE "^([0-9]+).*" "\\1" OS_RELEASE ${OS_RELEASE})
   SET(OS_VERSION "sl${OS_RELEASE}")
 ENDIF()
 
@@ -129,6 +129,8 @@ SET(CONFIGDIR "${LCFGCONF}/${LCFG_NAME}")
 SET(ICONDIR "${LCFGDATA}/${LCFG_NAME}/icons")
 
 SET(SCRIPTDIR "${LCFGDATA}/${LCFG_NAME}/scripts")
+
+SET(LCFG_TMPLDIR "${LCFGDATA}/${LCFG_NAME}")
 
 SET(MSG " ** Generated file : do not edit **")
 
