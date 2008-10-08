@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/09/12 14:05:30 $
 
-our $VERSION = '0.0.39';
+our $VERSION = '0.0.40';
 
 use File::Path ();
 use File::Spec ();
@@ -157,7 +157,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::DevPack version 0.0.39
+    This documentation refers to LCFG::Build::Tool::DevPack version 0.0.40
 
 =head1 SYNOPSIS
 

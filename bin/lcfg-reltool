@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/09/08 13:22:51 $
 
-our $VERSION = '0.0.39';
+our $VERSION = '0.0.40';
 
 use LCFG::Build::Tools;
 
@@ -22,7 +22,7 @@ lcfg-reltool - LCFG source release control tool
 
 =head1 VERSION
 
-This documentation refers to lcfg-reltool version 0.0.39
+This documentation refers to lcfg-reltool version 0.0.40
 
 =head1 SYNOPSIS
 

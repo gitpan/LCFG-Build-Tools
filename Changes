@@ -1,4 +1,14 @@
-2008-10-03  CVS: new release
+2008-10-08  CVS: new release
+
+	* Release: 0.0.40
+
+2008-10-08 14:40  squinney
+
+	* Added a new --fix_deprecated option to the CheckMacros tool to
+	  replace any usage of deprecated macros in the scanned files with
+	  the modern equivalent
+
+2008-10-03 13:55  squinney
 
 	* Release: 0.0.39
 

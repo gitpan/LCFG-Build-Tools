@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.39
+Version:        0.0.40
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.39.tar.gz
+Source0:        LCFG-Build-Tools-0.0.40.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,14 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri Oct 03 2008 <<<< Release: 0.0.39 >>>>
+* Wed Oct 08 2008 <<<< Release: 0.0.40 >>>>
+
+* Wed Oct 08 2008 14:40 squinney
+- Added a new --fix_deprecated option to the CheckMacros tool to
+  replace any usage of deprecated macros in the scanned files with
+  the modern equivalent
+
+* Fri Oct 03 2008 13:55 squinney
 
 * Fri Oct 03 2008 13:54 squinney
 - Added a new CMake variable - LCFG_TMPLDIR which is the

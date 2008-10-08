@@ -2,15 +2,16 @@ package LCFG::Build::Tool::CheckMacros;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: CheckMacros.pm.in,v 1.6 2008/10/03 12:54:51 squinney Exp $
+# $Id: CheckMacros.pm.in,v 1.7 2008/10/08 13:40:41 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/CheckMacros.pm.in,v $
-# $Revision: 1.6 $
+# $Revision: 1.7 $
 # $HeadURL$
-# $Date: 2008/10/03 12:54:51 $
+# $Date: 2008/10/08 13:40:41 $
 
-our $VERSION = '0.0.39';
+our $VERSION = '0.0.40';
 
 use File::Spec ();
+use File::Temp ();
 use IO::File ();
 use LCFG::Build::Utils;
 
@@ -21,6 +22,13 @@ extends 'LCFG::Build::Tool';
 # We do not want this option for these commands so use an override.
 
 has '+resultsdir' => ( traits => ['NoGetopt'] );
+
+has 'fix_deprecated' => (
+    is            => 'rw',
+    isa           => 'Bool',
+    default       => 0,
+    documentation => 'Replace deprecated macros with new-style names',
+);
 
 __PACKAGE__->meta->make_immutable;
 
@@ -81,22 +89,22 @@ my %basic = map { $_ => 'basic' } qw(
     MANSECT
 );
 
-my %deprecated = map { $_ => 'deprecated' } qw(
-    COMP
-    NAME
-    DESCR
-    V
-    VERSION
-    R
-    RELEASE
-    SCHEMA
-    VENDOR
-    ORGANIZATION
-    GROUP
-    AUTHOR
-    PLATFORMS
-    DATE
-    TARFILE
+my %deprecated = (
+    COMP          => 'LCFG_NAME',
+    NAME          => 'LCFG_FULLNAME',
+    DESCR         => 'LCFG_ABSTRACT',
+    V             => 'LCFG_VERSION',
+    VERSION       => 'LCFG_VERSION',
+    R             => 'LCFG_RELEASE',
+    RELEASE       => 'LCFG_RELEASE',
+    SCHEMA        => 'LCFG_SCHEMA',
+    VENDOR        => 'LCFG_VENDOR',
+    ORGANIZATION  => 'LCFG_VENDOR',
+    GROUP         => 'LCFG_GROUP',
+    AUTHOR        => 'LCFG_AUTHOR',
+    PLATFORMS     => 'LCFG_PLATFORMS',
+    DATE          => 'LCFG_DATE',
+    TARFILE       => 'LCFG_TARNAME',
 );
 
 my %buildtime = map { $_ => 'buildtime' } qw(
@@ -224,6 +232,61 @@ sub run {
         }
     }
 
+    if ( $self->fix_deprecated ) {
+        my %files_using_deprecated;
+        for my $macro ( keys %{$comments{deprecated}} ) {
+            my @found = @{$comments{deprecated}{$macro}};
+            for my $entry (@found) {
+                if ( $entry =~ m/^(.*?):\d+$/ ) {
+                    $files_using_deprecated{$1} = 1;
+                }
+            }
+        }
+
+        if ( 0 == scalar keys %files_using_deprecated ) {
+            $self->log("No deprecated macro usage found.");
+        }
+
+        for my $file ( sort keys %files_using_deprecated ) {
+            $self->log("Fixing deprecated macros in $file");
+
+            my $path = File::Spec->catfile( $dir, $file );
+            my $in = IO::File->new( $path, 'r' )
+                or $self->fail("Could not open $path: $!");
+
+            my $tmp = File::Temp->new( UNLINK => 0,
+                                       DIR    => $dir );
+
+            while ( defined( my $line = <$in> ) ) {
+
+                # Find a unique list of macros in this line
+
+                my @macros = ( $line =~ m/\@(\w+)\@/g );
+                my %macros = map { $_ => 1 } @macros;
+                @macros = keys %macros;
+
+                for my $macro (@macros) {
+                    if ( exists $deprecated{$macro} ) {
+                        $line =~ s/\@\Q$macro\E\@/\@$deprecated{$macro}\@/g;
+                    }
+                }
+
+                print {$tmp} $line;
+            }
+
+            my $out = $tmp->filename;
+            $tmp->close or $self->fail("Could not close $out: $!");
+
+            if ( !$self->dryrun ) {
+                rename $out, $path
+                    or $self->fail("Could not move $out to $path: $!");
+            }
+            else {
+                unlink $out; # Just tidying
+            }
+        }
+    }
+
     return;
 }
 
@@ -237,7 +300,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.39
+    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.40
 
 =head1 SYNOPSIS
 
@@ -274,6 +337,12 @@ be used like C<--foo=bar>. Boolean options can be expressed as either
 C<--foo> or C<--no-foo> to signify true and false values.
 
 =over 4
+
+=item fix_deprecated
+
+A boolean value which indicates whether any deprecated macros that are
+found in the files scanned should be automatically replaced with their
+modern equivalents.
 
 =item dryrun
 
