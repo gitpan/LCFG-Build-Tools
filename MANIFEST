@@ -10,10 +10,10 @@ lib/LCFG/Build/Tool/DevOSXPkg.pm
 lib/LCFG/Build/Tool/DevPack.pm
 lib/LCFG/Build/Tool/DevRPM.pm
 lib/LCFG/Build/Tool/MajorVersion.pm
+lib/LCFG/Build/Tool/MicroVersion.pm
 lib/LCFG/Build/Tool/MinorVersion.pm
 lib/LCFG/Build/Tool/OSXPkg.pm
 lib/LCFG/Build/Tool/Pack.pm
-lib/LCFG/Build/Tool/Release.pm
 lib/LCFG/Build/Tool/RPM.pm
 lib/LCFG/Build/Tool/SRPM.pm
 lib/LCFG/Build/Tools.pm

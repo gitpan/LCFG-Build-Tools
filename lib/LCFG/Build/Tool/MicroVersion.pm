@@ -1,14 +1,14 @@
-package LCFG::Build::Tool::Release;    # -*-cperl-*-
+package LCFG::Build::Tool::MicroVersion;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Release.pm.in,v 1.11 2008/09/12 14:05:30 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/Release.pm.in,v $
-# $Revision: 1.11 $
+# $Id: MicroVersion.pm.in,v 1.1 2008/10/27 09:02:23 squinney Exp $
+# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MicroVersion.pm.in,v $
+# $Revision: 1.1 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/10/27 09:02:23 $
 
-our $VERSION = '0.0.40';
+our $VERSION = '0.0.42';
 
 use Moose;
 
@@ -130,19 +130,19 @@ __END__
 
 =head1 NAME
 
-    LCFG::Build::Tool::Release - LCFG software packaging tool
+    LCFG::Build::Tool::MicroVersion - LCFG software packaging tool
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::Release version 0.0.40
+    This documentation refers to LCFG::Build::Tool::MicroVersion version 0.0.42
 
 =head1 SYNOPSIS
 
-    my $tool = LCFG::Build::Tool::Release->new( dir => '.' );
+    my $tool = LCFG::Build::Tool::MicroVersion->new( dir => '.' );
 
     $tool->run;
 
-    my $tool2 = LCFG::Build::Tool::Release->new_with_options();
+    my $tool2 = LCFG::Build::Tool::MicroVersion->new_with_options();
 
     $tool2->run;
 

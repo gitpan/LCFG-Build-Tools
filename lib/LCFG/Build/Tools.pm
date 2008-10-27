@@ -2,13 +2,13 @@ package LCFG::Build::Tools;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tools.pm.in,v 1.10 2008/09/12 14:05:30 squinney Exp $
+# $Id: Tools.pm.in,v 1.11 2008/10/27 09:02:23 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tools.pm.in,v $
-# $Revision: 1.10 $
+# $Revision: 1.11 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/10/27 09:02:23 $
 
-our $VERSION = '0.0.40';
+our $VERSION = '0.0.42';
 
 use Text::Abbreviate;
 
@@ -61,7 +61,7 @@ __END__
 
 =head1 VERSION
 
-This documentation refers to LCFG::Build::Tools version 0.0.40
+This documentation refers to LCFG::Build::Tools version 0.0.42
 
 =head1 DESCRIPTION
 
@@ -112,7 +112,7 @@ Build tool base class, only tool developers need to care about this.
 
 Tool for checking the macro usage in your project.
 
-=item L<LCFG::Build::Tool::Release>
+=item L<LCFG::Build::Tool::MicroVersion>
 
 Tool for tagging source code as a particular (micro-version) release.
 

@@ -2,17 +2,17 @@ package LCFG::Build::Tool::MajorVersion;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: MajorVersion.pm.in,v 1.6 2008/09/12 14:05:30 squinney Exp $
+# $Id: MajorVersion.pm.in,v 1.7 2008/10/27 09:02:23 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MajorVersion.pm.in,v $
-# $Revision: 1.6 $
+# $Revision: 1.7 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/10/27 09:02:23 $
 
-our $VERSION = '0.0.40';
+our $VERSION = '0.0.42';
 
 use Moose;
 
-extends 'LCFG::Build::Tool::Release';
+extends 'LCFG::Build::Tool::MicroVersion';
 
 override 'abstract' => sub {
     return q{Tag the source tree as a particular major release};
@@ -36,7 +36,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MajorVersion version 0.0.40
+    This documentation refers to LCFG::Build::Tool::MajorVersion version 0.0.42
 
 =head1 SYNOPSIS
 
@@ -144,7 +144,7 @@ L<LCFG::Build::VCS> for full details.
 =item run
 
 This calls the C<majorversion> method of
-L<LCFG::Build::Tool::Release>, you should read the documentation in
+L<LCFG::Build::Tool::MicroVersion>, you should read the documentation in
 that module for more details of the procedures.
 
 =item fail($message)
@@ -165,7 +165,7 @@ This module is L<Moose> powered and uses L<MooseX::App::Cmd> to handle
 command-line options.
 
 The following modules from the LCFG build tools suite are also
-required: L<LCFG::Build::Tool::Release>, L<LCFG::Build::PkgSpec>,
+required: L<LCFG::Build::Tool::MicroVersion>, L<LCFG::Build::PkgSpec>,
 L<LCFG::Build::VCS> and VCS helper module for your preferred
 version-control system.
 

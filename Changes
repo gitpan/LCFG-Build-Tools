@@ -1,4 +1,21 @@
-2008-10-08  CVS: new release
+2008-10-27  CVS: new release
+
+	* Release: 0.0.42
+
+2008-10-27 09:04  squinney
+
+	* Fixed MANIFEST
+
+2008-10-27 09:03  squinney
+
+	* Release: 0.0.41
+
+2008-10-27 09:02  squinney
+
+	* Renamed LCFG::Build::Tool::Release as
+	  LCFG::Build::Tool::MicroVersion
+
+2008-10-08 14:41  squinney
 
 	* Release: 0.0.40
 

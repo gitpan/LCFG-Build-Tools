@@ -2,13 +2,13 @@
 use strict;
 use warnings;
 
-# $Id: lcfg-reltool.in,v 1.4 2008/09/08 13:22:51 squinney Exp $
+# $Id: lcfg-reltool.in,v 1.5 2008/10/27 09:02:23 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/bin/lcfg-reltool.in,v $
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 # $HeadURL$
-# $Date: 2008/09/08 13:22:51 $
+# $Date: 2008/10/27 09:02:23 $
 
-our $VERSION = '0.0.40';
+our $VERSION = '0.0.42';
 
 use LCFG::Build::Tools;
 
@@ -22,7 +22,7 @@ lcfg-reltool - LCFG source release control tool
 
 =head1 VERSION
 
-This documentation refers to lcfg-reltool version 0.0.40
+This documentation refers to lcfg-reltool version 0.0.42
 
 =head1 SYNOPSIS
 
@@ -63,7 +63,7 @@ specific module. They are all in the C<LCFG::Build::Tool> namespace.
 
 Checks the usage of substitution macros in your project.
 
-=item release - L<LCFG::Build::Tool::Release>
+=item release - L<LCFG::Build::Tool::MicroVersion>
 
 Increment by one the third (smallest) part of the version field and
 tag the project. This will also reset the release field to 1. For

@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/09/12 14:05:30 $
 
-our $VERSION = '0.0.40';
+our $VERSION = '0.0.42';
 
 use LCFG::Build::Utils::RPM;
 use File::Basename ();
@@ -99,7 +99,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::RPM version 0.0.40
+    This documentation refers to LCFG::Build::Tool::RPM version 0.0.42
 
 =head1 SYNOPSIS
 
