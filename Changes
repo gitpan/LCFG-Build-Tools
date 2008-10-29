@@ -1,4 +1,24 @@
-2008-10-27  CVS: new release
+2008-10-29  CVS: new release
+
+	* Release: 0.0.44
+
+2008-10-29 15:21  squinney
+
+	* Fixed abstract for LCFG::Build::Tool::RPM
+
+2008-10-29 15:20  squinney
+
+	* Fixed abstract for LCFG::Build::Tool::SRPM
+
+2008-10-28 10:42  squinney
+
+	* Release: 0.0.43
+
+2008-10-28 10:42  squinney
+
+	* Slightly altered cmake.tt template so that it is more generic
+
+2008-10-27 09:04  squinney
 
 	* Release: 0.0.42
 

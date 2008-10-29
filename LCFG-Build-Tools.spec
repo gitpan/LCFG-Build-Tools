@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.42
+Version:        0.0.44
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.42.tar.gz
+Source0:        LCFG-Build-Tools-0.0.44.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,20 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Mon Oct 27 2008 <<<< Release: 0.0.42 >>>>
+* Wed Oct 29 2008 <<<< Release: 0.0.44 >>>>
+
+* Wed Oct 29 2008 15:21 squinney
+- Fixed abstract for LCFG::Build::Tool::RPM
+
+* Wed Oct 29 2008 15:20 squinney
+- Fixed abstract for LCFG::Build::Tool::SRPM
+
+* Tue Oct 28 2008 10:42 squinney
+
+* Tue Oct 28 2008 10:42 squinney
+- Slightly altered cmake.tt template so that it is more generic
+
+* Mon Oct 27 2008 09:04 squinney
 
 * Mon Oct 27 2008 09:04 squinney
 - Fixed MANIFEST

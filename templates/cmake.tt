@@ -4,4 +4,4 @@ project ([% spec.fullname %])
 
 include(lcfg.cmake)
 
-lcfg_add_component([% spec.name %])
+lcfg_add_component(${LCFG_NAME})

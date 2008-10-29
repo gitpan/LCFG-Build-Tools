@@ -2,13 +2,13 @@ package LCFG::Build::Tool::RPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: RPM.pm.in,v 1.14 2008/09/12 14:05:30 squinney Exp $
+# $Id: RPM.pm.in,v 1.15 2008/10/29 15:21:10 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/RPM.pm.in,v $
-# $Revision: 1.14 $
+# $Revision: 1.15 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/10/29 15:21:10 $
 
-our $VERSION = '0.0.42';
+our $VERSION = '0.0.44';
 
 use LCFG::Build::Utils::RPM;
 use File::Basename ();
@@ -34,7 +34,7 @@ has 'deps' => (
 );
 
 override 'abstract' => sub {
-    return q{Build binary RPMS from the tagged source tree};
+    return q{Build binary RPMs from the tagged source tree};
 };
 
 override 'run' => sub {
@@ -99,7 +99,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::RPM version 0.0.42
+    This documentation refers to LCFG::Build::Tool::RPM version 0.0.44
 
 =head1 SYNOPSIS
 

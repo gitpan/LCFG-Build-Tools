@@ -2,17 +2,21 @@ package LCFG::Build::Tool::SRPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: SRPM.pm.in,v 1.7 2008/09/12 14:05:30 squinney Exp $
+# $Id: SRPM.pm.in,v 1.8 2008/10/29 15:20:23 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/SRPM.pm.in,v $
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/10/29 15:20:23 $
 
-our $VERSION = '0.0.42';
+our $VERSION = '0.0.44';
 
 use Moose;
 
 extends 'LCFG::Build::Tool::RPM';
+
+override 'abstract' => sub {
+    return q{Build source RPMs from the tagged source tree};
+};
 
 has '+sourceonly' => (
     default => 1,
@@ -36,7 +40,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.42
+    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.44
 
 =head1 SYNOPSIS
 
