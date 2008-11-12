@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/10/27 09:02:23 $
 
-our $VERSION = '0.0.44';
+our $VERSION = '0.0.45';
 
 use Moose;
 
@@ -36,7 +36,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MinorVersion version 0.0.44
+    This documentation refers to LCFG::Build::Tool::MinorVersion version 0.0.45
 
 =head1 SYNOPSIS
 

@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/09/12 14:05:30 $
 
-our $VERSION = '0.0.44';
+our $VERSION = '0.0.45';
 
 use Date::Format ();
 use Date::Parse  ();
@@ -246,7 +246,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::RPM version 0.0.44
+    This documentation refers to LCFG::Build::Utils::RPM version 0.0.45
 
 =head1 SYNOPSIS
 

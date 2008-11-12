@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.44
+Version:        0.0.45
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.44.tar.gz
+Source0:        LCFG-Build-Tools-0.0.45.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Wed Oct 29 2008 <<<< Release: 0.0.44 >>>>
+* Tue Nov 11 2008 <<<< Release: 0.0.45 >>>>
+
+* Tue Nov 11 2008 10:14 squinney
+- Fixed OS_VERSION macro for 64bit linux platforms
+
+* Wed Oct 29 2008 15:22 squinney
 
 * Wed Oct 29 2008 15:21 squinney
 - Fixed abstract for LCFG::Build::Tool::RPM

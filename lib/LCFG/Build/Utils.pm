@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/09/12 14:05:30 $
 
-our $VERSION = '0.0.44';
+our $VERSION = '0.0.45';
 
 use File::Basename ();
 use File::Find     ();
@@ -344,7 +344,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils version 0.0.44
+    This documentation refers to LCFG::Build::Utils version 0.0.45
 
 =head1 SYNOPSIS
 

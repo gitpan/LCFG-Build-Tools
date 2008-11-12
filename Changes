@@ -1,4 +1,12 @@
-2008-10-29  CVS: new release
+2008-11-11  CVS: new release
+
+	* Release: 0.0.45
+
+2008-11-11 10:14  squinney
+
+	* Fixed OS_VERSION macro for 64bit linux platforms
+
+2008-10-29 15:22  squinney
 
 	* Release: 0.0.44
 
