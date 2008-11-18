@@ -46,6 +46,9 @@ IF(${DISTRIB_ID} STREQUAL "ScientificSL")
   SET(OS_VERSION "sl${OS_RELEASE}")
 ENDIF()
 
+SET(OS_NAME "linux")
+SET(OS_ID "${OS_VERSION}")
+
 ENDIF(LSB)
 
 # Architecture-specific installation locations, this is for
@@ -53,7 +56,7 @@ ENDIF(LSB)
 # systems.
 
 IF(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-  SET(OS_VERSION "${OS_VERSION}_64")
+  SET(OS_ID "${OS_ID}_64")
 
   SET(LIBDIR "/usr/lib64" CACHE PATH "Library installation location")
   SET(LIBSECURITYDIR "/lib64/security" CACHE PATH "PAM module installation location")

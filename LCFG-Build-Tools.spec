@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.45
+Version:        0.0.47
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.45.tar.gz
+Source0:        LCFG-Build-Tools-0.0.47.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,24 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Tue Nov 11 2008 <<<< Release: 0.0.45 >>>>
+* Tue Nov 18 2008 <<<< Release: 0.0.47 >>>>
+
+* Tue Nov 18 2008 14:30 squinney
+- Added cmake macros lcfg_add_nagios_module() to do-the-right-thing
+  with LCFG nagios configuration modules and
+  lcfg_add_nagios_support() to call that for every module it finds
+  in the nagios directory for a project.  lcfg_add_nagios_support()
+  is called for every component project, if there is not a nagios
+  directory then it achieves nothing.
+
+* Tue Nov 18 2008 14:12 squinney
+
+* Tue Nov 18 2008 14:12 squinney
+- Improved the fix for the OS_VERSION detection. It now behaves the
+  same as the old buildtools. There is a new variable naemd OS_ID
+  which gives the complete (arch-specific) name of the platform
+
+* Tue Nov 11 2008 10:14 squinney
 
 * Tue Nov 11 2008 10:14 squinney
 - Fixed OS_VERSION macro for 64bit linux platforms

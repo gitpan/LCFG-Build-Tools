@@ -1,4 +1,27 @@
-2008-11-11  CVS: new release
+2008-11-18  CVS: new release
+
+	* Release: 0.0.47
+
+2008-11-18 14:30  squinney
+
+	* Added cmake macros lcfg_add_nagios_module() to do-the-right-thing
+	  with LCFG nagios configuration modules and
+	  lcfg_add_nagios_support() to call that for every module it finds
+	  in the nagios directory for a project.  lcfg_add_nagios_support()
+	  is called for every component project, if there is not a nagios
+	  directory then it achieves nothing.
+
+2008-11-18 14:12  squinney
+
+	* Release: 0.0.46
+
+2008-11-18 14:12  squinney
+
+	* Improved the fix for the OS_VERSION detection. It now behaves the
+	  same as the old buildtools. There is a new variable naemd OS_ID
+	  which gives the complete (arch-specific) name of the platform
+
+2008-11-11 10:14  squinney
 
 	* Release: 0.0.45
 
