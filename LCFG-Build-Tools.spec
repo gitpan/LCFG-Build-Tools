@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.47
+Version:        0.0.49
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.47.tar.gz
+Source0:        LCFG-Build-Tools-0.0.49.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,18 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Tue Nov 18 2008 <<<< Release: 0.0.47 >>>>
+* Fri Dec 05 2008 <<<< Release: 0.0.49 >>>>
+
+* Fri Dec 05 2008 12:05 squinney
+- Added support for automatically installing templates found in a
+  templates directory
+
+* Thu Nov 27 2008 19:45 squinney
+
+* Thu Nov 27 2008 19:45 squinney
+- Fixed nagios module path
+
+* Tue Nov 18 2008 14:30 squinney
 
 * Tue Nov 18 2008 14:30 squinney
 - Added cmake macros lcfg_add_nagios_module() to do-the-right-thing

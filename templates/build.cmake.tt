@@ -158,10 +158,18 @@ MACRO(lcfg_add_template)
   INSTALL(FILES ${ARGV} DESTINATION ${LCFG_TMPLDIR})
 ENDMACRO(lcfg_add_template)
 
+MACRO(lcfg_add_templates)
+
+  file(GLOB templates "templates/*")
+
+  lcfg_add_template(${templates})
+
+ENDMACRO(lcfg_add_templates)
+
 MACRO(lcfg_add_nagios_module modpath)
 
   get_filename_component(modname ${modpath} NAME)
-  lcfg_add_perl_module(${modpath} "LCFG/Monitoring/Translators/${modname}")
+  lcfg_add_perl_module(${modpath} "LCFG/Monitoring/Nagios/Translators/${modname}")
 
 ENDMACRO(lcfg_add_nagios_module)
 
@@ -182,6 +190,7 @@ MACRO(lcfg_add_component compname)
   lcfg_add_comp_pod(${compname})
   lcfg_add_schema(${compname} ${LCFG_SCHEMA})
   lcfg_add_logrotate()
+  lcfg_add_templates()
   lcfg_add_nagios_support()
 
 ENDMACRO(lcfg_add_component)
