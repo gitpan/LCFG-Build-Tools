@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.49
+Version:        0.0.50
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.49.tar.gz
+Source0:        LCFG-Build-Tools-0.0.50.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,12 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri Dec 05 2008 <<<< Release: 0.0.49 >>>>
+* Fri Dec 05 2008 <<<< Release: 0.0.50 >>>>
+
+* Fri Dec 05 2008 12:47 squinney
+- Second attempt to handle automatically installing templates
+
+* Fri Dec 05 2008 12:05 squinney
 
 * Fri Dec 05 2008 12:05 squinney
 - Added support for automatically installing templates found in a

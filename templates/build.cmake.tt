@@ -160,7 +160,7 @@ ENDMACRO(lcfg_add_template)
 
 MACRO(lcfg_add_templates)
 
-  file(GLOB templates "templates/*")
+  file(GLOB templates "template" "templates/*.tmpl" "templates/*.tt")
 
   lcfg_add_template(${templates})
 

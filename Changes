@@ -1,5 +1,13 @@
 2008-12-05  CVS: new release
 
+	* Release: 0.0.50
+
+2008-12-05 12:47  squinney
+
+	* Second attempt to handle automatically installing templates
+
+2008-12-05 12:05  squinney
+
 	* Release: 0.0.49
 
 2008-12-05 12:05  squinney

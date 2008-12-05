@@ -1,6 +1,6 @@
 ---
 name: 'LCFG-Build-Tools'
-version: 0.0.49'
+version: 0.0.50'
 author:
   - 'Stephen Quinney <squinney@inf.ed.ac.uk>'
 abstract: LCFG build system tools
@@ -31,52 +31,52 @@ build_requires:
 provides:
   LCFG::Build::Tool:
     file: lib/LCFG/Build/Tool.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::CheckMacros:
     file: lib/LCFG/Build/Tool/CheckMacros.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::DevOSXPkg:
     file: lib/LCFG/Build/Tool/DevOSXPkg.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::DevPack:
     file: lib/LCFG/Build/Tool/DevPack.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::DevRPM:
     file: lib/LCFG/Build/Tool/DevRPM.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::MajorVersion:
     file: lib/LCFG/Build/Tool/MajorVersion.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::MinorVersion:
     file: lib/LCFG/Build/Tool/MinorVersion.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::OSXPkg:
     file: lib/LCFG/Build/Tool/OSXPkg.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::Pack:
     file: lib/LCFG/Build/Tool/Pack.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::RPM:
     file: lib/LCFG/Build/Tool/RPM.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::MicroVersion:
     file: lib/LCFG/Build/Tool/MicroVersion.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tool::SRPM:
     file: lib/LCFG/Build/Tool/SRPM.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Tools:
     file: lib/LCFG/Build/Tools.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Utils:
     file: lib/LCFG/Build/Utils.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Utils::MacOSX:
     file: lib/LCFG/Build/Utils/MacOSX.pm
-    version: '0.0.49'
+    version: '0.0.50'
   LCFG::Build::Utils::RPM:
     file: lib/LCFG/Build/Utils/RPM.pm
-    version: '0.0.49'
+    version: '0.0.50'
 generated_by: Module::Build version 0.2807
 no_index:
   dir:
