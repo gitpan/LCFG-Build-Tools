@@ -8,7 +8,7 @@ use warnings;
 # $HeadURL$
 # $Date: 2008/09/12 14:05:30 $
 
-our $VERSION = '0.0.50';
+our $VERSION = '0.0.51';
 
 use File::Spec ();
 use LCFG::Build::Utils;
@@ -62,7 +62,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::MacOSX version 0.0.50
+    This documentation refers to LCFG::Build::Utils::MacOSX version 0.0.51
 
 =head1 SYNOPSIS
 

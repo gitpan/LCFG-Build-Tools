@@ -2,13 +2,13 @@ package LCFG::Build::Tool;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tool.pm.in,v 1.8 2008/09/12 14:05:30 squinney Exp $
+# $Id: Tool.pm.in,v 1.9 2008/12/11 14:42:51 squinney Exp $
 # $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool.pm.in,v $
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 # $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Date: 2008/12/11 14:42:51 $
 
-our $VERSION = '0.0.50';
+our $VERSION = '0.0.51';
 
 use File::HomeDir;
 use File::Spec;
@@ -76,12 +76,36 @@ sub _load_vcs_module {
 
     my $spec = $self->spec;
 
-    if (   !defined $spec->vcs
-        || !defined $spec->get_vcsinfo('type') ) {
-        die "No version control information in the LCFG metafile for this project.\n";
+    my $vcstype;
+    if ( defined $spec->vcs && defined $spec->get_vcsinfo('type') ) {
+        $vcstype = $spec->get_vcsinfo('type');
+    }
+    else {
+        warn "No version-control information in the LCFG metafile for this project.\n";
+
+        # Attempt to detect the version-control system, otherwise fall
+        # back to the "None" module. This is not very extensible but I
+        # have not yet come up with a simple method to provide support
+        # for any/all version-control systems.
+
+        my %metadirs = ( CVS    => 'CVS',
+                         '.svn' => 'SVN' );
+
+        for my $metadir ( keys %metadirs ) {
+            my $dir = File::Spec->catdir( $self->dir, $metadir );
+            if ( -d $dir ) {
+                $vcstype = $metadirs{$metadir};
+            }
+        }
+
+        if ( !$vcstype ) {
+            $vcstype = 'None';
+        }
+
+        warn "Auto-detected that the $vcstype module should be used.\n";
     }
 
-    my $vcsmodule = 'LCFG::Build::VCS::' . $spec->get_vcsinfo('type');
+    my $vcsmodule = 'LCFG::Build::VCS::' . $vcstype;
 
     $vcsmodule->require or die $@;
 
@@ -138,7 +162,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool version 0.0.50
+    This documentation refers to LCFG::Build::Tool version 0.0.51
 
 =head1 SYNOPSIS
 

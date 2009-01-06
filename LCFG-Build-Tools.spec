@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.50
+Version:        0.0.51
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.50.tar.gz
+Source0:        LCFG-Build-Tools-0.0.51.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -92,7 +92,15 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri Dec 05 2008 <<<< Release: 0.0.50 >>>>
+* Thu Dec 11 2008 <<<< Release: 0.0.51 >>>>
+
+* Thu Dec 11 2008 14:42 squinney
+- Added basic auto-detection of the version control system
+
+* Wed Dec 10 2008 16:22 squinney
+- Automatically create CONFIGDIR for components
+
+* Fri Dec 05 2008 12:48 squinney
 
 * Fri Dec 05 2008 12:47 squinney
 - Second attempt to handle automatically installing templates

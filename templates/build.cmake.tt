@@ -193,5 +193,11 @@ MACRO(lcfg_add_component compname)
   lcfg_add_templates()
   lcfg_add_nagios_support()
 
+  # This is a directory used by components to store generated files
+  # Lots of components need it and it is harmless to create it for
+  # those which do not.
+
+  install(DIRECTORY DESTINATION ${CONFIGDIR})
+
 ENDMACRO(lcfg_add_component)
 
