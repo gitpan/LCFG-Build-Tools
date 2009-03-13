@@ -2,19 +2,18 @@ package LCFG::Build::Utils::RPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: RPM.pm.in,v 1.8 2008/09/12 14:05:30 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/RPM.pm.in,v $
-# $Revision: 1.8 $
-# $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Id: RPM.pm.in 3588 2009-03-13 15:49:54Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/RPM.pm.in,v $
+# $Revision: 3588 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Utils/RPM.pm.in $
+# $Date: 2009-03-13 15:49:54 +0000 (Fri, 13 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
-use Date::Format ();
-use Date::Parse  ();
-use File::Copy   ();
-use File::Path   ();
-use File::Spec   ();
+use DateTime   ();
+use File::Copy ();
+use File::Path ();
+use File::Spec ();
 
 use LCFG::Build::Utils;
 
@@ -75,8 +74,12 @@ sub generate_metadata {
 sub _format_entry {
     my ( $date, $release, $rest, @body ) = @_;
 
-    my $t = Date::Parse::str2time($date);
-    my $formatted_date = Date::Format::time2str( '%a %b %d %Y', $t );
+    my ( $year, $month, $day ) = split /-/, $date;
+    my $dt = DateTime->new( year   => $year,
+                            month  => $month,
+                            day    => $day );
+
+    my $formatted_date = $dt->strftime('%a %b %d %Y');
 
     if ( $rest =~ /\s*cvs:\s*new release/i && defined $release ) {
         $rest = "<<<< Release: $release >>>>";
@@ -194,7 +197,8 @@ sub build {
                          PACKAGEBINARY);
     }
 
-    my $rpmspec = RPM4::Spec->new($specfile);
+    my $rpmspec = RPM4::Spec->new($specfile)
+      or die "Failed to parse $specfile\n";
 
     my $db = RPM4::newdb();
 
@@ -246,7 +250,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::RPM version 0.0.51
+    This documentation refers to LCFG::Build::Utils::RPM version 0.0.55
 
 =head1 SYNOPSIS
 
@@ -294,8 +298,7 @@ options.
 =head1 DEPENDENCIES
 
 For building packages you will need RPM4(3), for formatting the change
-log file you will need Date::Parse(3) and Date::Format(3) which are
-part of the TimeDate suite.
+log file you will need DateTime(3).
 
 =head1 PLATFORMS
 

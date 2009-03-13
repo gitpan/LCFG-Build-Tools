@@ -2,13 +2,13 @@ package LCFG::Build::Tools;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tools.pm.in,v 1.11 2008/10/27 09:02:23 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tools.pm.in,v $
-# $Revision: 1.11 $
-# $HeadURL$
-# $Date: 2008/10/27 09:02:23 $
+# $Id: Tools.pm.in 3588 2009-03-13 15:49:54Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tools.pm.in,v $
+# $Revision: 3588 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Tools.pm.in $
+# $Date: 2009-03-13 15:49:54 +0000 (Fri, 13 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
 use Text::Abbreviate;
 
@@ -61,7 +61,7 @@ __END__
 
 =head1 VERSION
 
-This documentation refers to LCFG::Build::Tools version 0.0.51
+This documentation refers to LCFG::Build::Tools version 0.0.55
 
 =head1 DESCRIPTION
 
@@ -179,9 +179,9 @@ The templates are processed using the perl Template Toolkit.
 
 For building RPM packages you will need the L<RPM4> module.
 
-You will also need L<Archive::Tar>, L<Date::Format>, L<Date::Parse>,
-L<File::Find::Rule>, L<IO::Zlib>, L<Text::Abbreviate>,
-L<UNIVERSAL::require> and L<YAML::Syck>.
+You will also need L<Archive::Tar>, L<DateTime>, L<File::Find::Rule>,
+L<IO::Zlib>, L<Text::Abbreviate>, L<UNIVERSAL::require> and
+L<YAML::Syck>.
 
 =head1 SEE ALSO
 

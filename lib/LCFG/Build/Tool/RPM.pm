@@ -2,13 +2,13 @@ package LCFG::Build::Tool::RPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: RPM.pm.in,v 1.15 2008/10/29 15:21:10 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/RPM.pm.in,v $
-# $Revision: 1.15 $
-# $HeadURL$
-# $Date: 2008/10/29 15:21:10 $
+# $Id: RPM.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/RPM.pm.in,v $
+# $Revision: 3446 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Tool/RPM.pm.in $
+# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
 use LCFG::Build::Utils::RPM;
 use File::Basename ();
@@ -99,7 +99,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::RPM version 0.0.51
+    This documentation refers to LCFG::Build::Tool::RPM version 0.0.55
 
 =head1 SYNOPSIS
 

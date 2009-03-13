@@ -2,13 +2,13 @@ package LCFG::Build::Tool::MicroVersion;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: MicroVersion.pm.in,v 1.1 2008/10/27 09:02:23 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MicroVersion.pm.in,v $
-# $Revision: 1.1 $
-# $HeadURL$
-# $Date: 2008/10/27 09:02:23 $
+# $Id: MicroVersion.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MicroVersion.pm.in,v $
+# $Revision: 3446 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Tool/MicroVersion.pm.in $
+# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
 use Moose;
 
@@ -134,7 +134,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MicroVersion version 0.0.51
+    This documentation refers to LCFG::Build::Tool::MicroVersion version 0.0.55
 
 =head1 SYNOPSIS
 

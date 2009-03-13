@@ -2,13 +2,13 @@ package LCFG::Build::Tool::MinorVersion;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: MinorVersion.pm.in,v 1.7 2008/10/27 09:02:23 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MinorVersion.pm.in,v $
-# $Revision: 1.7 $
-# $HeadURL$
-# $Date: 2008/10/27 09:02:23 $
+# $Id: MinorVersion.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MinorVersion.pm.in,v $
+# $Revision: 3446 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Tool/MinorVersion.pm.in $
+# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
 use Moose;
 
@@ -36,7 +36,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MinorVersion version 0.0.51
+    This documentation refers to LCFG::Build::Tool::MinorVersion version 0.0.55
 
 =head1 SYNOPSIS
 

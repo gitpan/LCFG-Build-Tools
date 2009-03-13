@@ -50,32 +50,40 @@ MACRO(pod_strip in out)
 
 ENDMACRO(pod_strip)
 
-FIND_PROGRAM(POD2MAN pod2man)
-
 MACRO(lcfg_add_man manfile section)
  
   INSTALL(FILES ${manfile} DESTINATION ${LCFGMAN}/man${section})
 
 ENDMACRO(lcfg_add_man)
 
+FIND_PROGRAM(POD2MAN pod2man)
+
+MACRO(lcfg_pod2man podfile manfile section)
+  IF(NOT POD2MAN)
+    message(FATAL ERROR "Need pod2man installed to generate manual files")
+  ENDIF(NOT POD2MAN)
+
+  IF(NOT EXISTS ${podfile})
+    MESSAGE(FATAL ERROR "Could not find pod file ${podfile} to generate manual file")
+  ENDIF(NOT EXISTS ${podfile})
+
+  SET(outfile "${manfile}.${section}")
+
+  IF(LCFG_GROUP)
+    EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --center="${LCFG_GROUP}" --date="${LCFG_DATE}" ${podfile} ${outfile})
+  ELSE(LCFG_GROUP)
+    EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --date="${LCFG_DATE}" ${podfile} ${outfile})
+  ENDIF(LCFG_GROUP)
+
+  lcfg_add_man(${outfile} ${section})
+ENDMACRO(lcfg_pod2man)
+
 MACRO(lcfg_add_pod podfile manfile section)
 
   IF(EXISTS ${podfile})
     INSTALL(FILES ${podfile} DESTINATION ${LCFGPOD})
 
-    IF(POD2MAN)
-      SET(outfile "${manfile}.${section}")
-
-      IF(LCFG_GROUP)
-        EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --center="${LCFG_GROUP}" --date="${LCFG_DATE}" ${podfile} ${outfile})
-      ELSE(LCFG_GROUP)
-        EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --date="${LCFG_DATE}" ${podfile} ${outfile})
-      ENDIF(LCFG_GROUP)
-
-      lcfg_add_man(${outfile} ${section})
-
-    ENDIF(POD2MAN)
-
+    lcfg_pod2man(${podfile} ${manfile} ${section})
   ENDIF(EXISTS ${podfile})
 
 ENDMACRO(lcfg_add_pod)

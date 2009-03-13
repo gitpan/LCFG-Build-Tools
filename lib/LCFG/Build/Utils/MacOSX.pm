@@ -2,17 +2,19 @@ package LCFG::Build::Utils::MacOSX;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: MacOSX.pm.in,v 1.6 2008/09/12 14:05:30 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/MacOSX.pm.in,v $
-# $Revision: 1.6 $
-# $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Id: MacOSX.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/MacOSX.pm.in,v $
+# $Revision: 3446 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Utils/MacOSX.pm.in $
+# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
 use File::Spec ();
 use LCFG::Build::Utils;
 use Sys::Hostname ();
+
+my @metadata_files = qw(); # currently empty list
 
 sub generate_metadata {
     my ( $self, $spec, $dir, $outdir ) = @_;
@@ -33,7 +35,7 @@ sub generate_metadata {
     my $tmpldir
         = File::Spec->catdir( LCFG::Build::Utils::datadir(), 'templates' );
 
-    for my $file (qw/Description.plist Info.plist/) {
+    for my $file (@metadata_files) {
         my $infile = File::Spec->catfile( $dir, $file );
 
         if ( !-f $infile ) {
@@ -62,7 +64,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::MacOSX version 0.0.51
+    This documentation refers to LCFG::Build::Utils::MacOSX version 0.0.55
 
 =head1 SYNOPSIS
 

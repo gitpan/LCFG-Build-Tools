@@ -2,13 +2,13 @@ package LCFG::Build::Tool::Pack;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Pack.pm.in,v 1.13 2008/09/12 14:05:30 squinney Exp $
-# $Source: /disk/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/Pack.pm.in,v $
-# $Revision: 1.13 $
-# $HeadURL$
-# $Date: 2008/09/12 14:05:30 $
+# $Id: Pack.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/Pack.pm.in,v $
+# $Revision: 3446 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Tool/Pack.pm.in $
+# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.51';
+our $VERSION = '0.0.55';
 
 use File::Path ();
 use File::Spec ();
@@ -140,7 +140,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::Pack version 0.0.51
+    This documentation refers to LCFG::Build::Tool::Pack version 0.0.55
 
 =head1 SYNOPSIS
 

@@ -35,8 +35,7 @@ To build this module you will need the following:
 To use this module you will need the following:
 
         Archive::Tar
-        Date::Format >= 1.16
-        Date::Parse
+        DateTime
         File::Find::Rule
         IO::Zlib
         LCFG::Build::PkgSpec >= 0.0.22

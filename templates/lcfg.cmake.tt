@@ -1,4 +1,3 @@
-
 # Details for this project
 
 # The entries with names which do *not* start with LCFG_ or CPACK_ are
@@ -76,7 +75,21 @@ SET(HAS_PROC "no")
 SET(BOOTCOMP "macboot")
 
 SET(OSX_VERSION ${DARWIN_MINOR_VERSION})
-                
+
+## This makes CPack use temporary install root for packaging.
+## There seems to be a lot of discussion indicating that this should
+## be the default, but it's not.
+SET(CPACK_SET_DESTDIR "ON")
+
+## Use the "Unspecified package to avoid the server defs
+SET(CPACK_INSTALL_CMAKE_PROJECTS "${CMAKE_HOME_DIRECTORY};${LCFG_FULLNAME};Unspecified;/")
+
+## Tells CPack not to bother creating tgz etc package
+SET(CPACK_GENERATOR "PackageMaker")
+
+## Turns on CPack
+INCLUDE(CPack)
+
 ENDIF(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 
 # Find the location of the perl executable
