@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.55
+Version:        0.0.56
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.55.tar.gz
+Source0:        LCFG-Build-Tools-0.0.56.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -93,7 +93,16 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri Mar 13 2009 SVN: new release
+* Thu Apr 09 2009 SVN: new release
+
+* Thu Apr 09 2009 07:53 squinney@INF.ED.AC.UK
+- lcfg.yml, lib/LCFG/Build/Utils.pm.in: Fixed a problem with not
+  copying the mode when translating files prior to packing. Only
+  affects packages using the translate_before_pack option which is
+  not standard
+
+* Fri Mar 13 2009 15:50 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.55
 
 * Fri Mar 13 2009 15:49 squinney@INF.ED.AC.UK
 - Build.PL.in, LCFG-Build-Tools.spec, META.yml.in, Makefile.PL,

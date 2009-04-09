@@ -5,10 +5,10 @@ use warnings;
 # $Id: SRPM.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/SRPM.pm.in,v $
 # $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Tool/SRPM.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Tool/SRPM.pm.in $
 # $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.55';
+our $VERSION = '0.0.56';
 
 use Moose;
 
@@ -40,7 +40,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.55
+    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.56
 
 =head1 SYNOPSIS
 

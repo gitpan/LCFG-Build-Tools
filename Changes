@@ -1,6 +1,17 @@
-2009-03-13  SVN: new release
+2009-04-09  SVN: new release
 
-	* Release: 0.0.55
+	* Release: 0.0.56
+
+2009-04-09 07:53  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, lib/LCFG/Build/Utils.pm.in: Fixed a problem with not
+	  copying the mode when translating files prior to packing. Only
+	  affects packages using the translate_before_pack option which is
+	  not standard
+
+2009-03-13 15:50  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.55
 
 2009-03-13 15:49  squinney@INF.ED.AC.UK
 

@@ -2,13 +2,13 @@ package LCFG::Build::Utils;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Utils.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Id: Utils.pm.in 3895 2009-04-09 07:53:55Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils.pm.in,v $
-# $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_55/lib/LCFG/Build/Utils.pm.in $
-# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
+# $Revision: 3895 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Utils.pm.in $
+# $Date: 2009-04-09 08:53:55 +0100 (Thu, 09 Apr 2009) $
 
-our $VERSION = '0.0.55';
+our $VERSION = '0.0.56';
 
 use File::Basename ();
 use File::Find     ();
@@ -147,6 +147,15 @@ sub translate_file {
 
     rename $tmpname, $out
         or die "Could not move temporary file $tmpname to $out: $!\n";
+
+    my ( $dev,   $ino,     $mode, $nlink, $uid,
+         $gid,   $rdev,    $size, $atime, $mtime,
+         $ctime, $blksize, $blocks ) = stat $in;
+
+    # Attempt to make the output files look the same as the input files
+
+    chmod $mode, $out or warn "chmod on $out to ($mode) failed: $!\n";
+    utime $atime, $mtime, $out or warn "utime on $out to ($atime, $mtime) failed: $!\n";
 
     return;
 }
@@ -344,7 +353,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils version 0.0.55
+    This documentation refers to LCFG::Build::Utils version 0.0.56
 
 =head1 SYNOPSIS
 
