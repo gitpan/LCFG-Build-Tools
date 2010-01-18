@@ -10,9 +10,8 @@ WriteMakefile
                          ],
           'VERSION_FROM' => 'lib/LCFG/Build/Tools.pm',
           'PREREQ_PM' => {
-                           'Text::Abbreviate' => '0.01',
                            'LCFG::Build::VCS' => '0.0.19',
-                           'MooseX::App::Cmd' => '0.04',
+                           'MooseX::App::Cmd' => '0.06',
                            'File::HomeDir' => '0.58',
                            'Archive::Tar' => '0',
                            'Moose' => '0.57',

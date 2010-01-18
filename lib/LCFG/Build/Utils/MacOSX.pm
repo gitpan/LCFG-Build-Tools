@@ -5,10 +5,10 @@ use warnings;
 # $Id: MacOSX.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/MacOSX.pm.in,v $
 # $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Utils/MacOSX.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Utils/MacOSX.pm.in $
 # $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
 
-our $VERSION = '0.0.56';
+our $VERSION = '0.0.58';
 
 use File::Spec ();
 use LCFG::Build::Utils;
@@ -64,7 +64,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::MacOSX version 0.0.56
+    This documentation refers to LCFG::Build::Utils::MacOSX version 0.0.58
 
 =head1 SYNOPSIS
 

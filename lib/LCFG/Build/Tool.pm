@@ -2,13 +2,13 @@ package LCFG::Build::Tool;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tool.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Id: Tool.pm.in 4353 2009-07-03 14:17:57Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool.pm.in,v $
-# $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Tool.pm.in $
-# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
+# $Revision: 4353 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool.pm.in $
+# $Date: 2009-07-03 15:17:57 +0100 (Fri, 03 Jul 2009) $
 
-our $VERSION = '0.0.56';
+our $VERSION = '0.0.58';
 
 use File::HomeDir;
 use File::Spec;
@@ -27,6 +27,7 @@ has 'dryrun' => (
 );
 
 has 'quiet' => (
+    metaclass     => 'MooseX::Getopt::Meta::Attribute',
     is            => 'rw',
     isa           => 'Bool',
     default       => 0,
@@ -162,7 +163,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool version 0.0.56
+    This documentation refers to LCFG::Build::Tool version 0.0.58
 
 =head1 SYNOPSIS
 

@@ -2,13 +2,13 @@ package LCFG::Build::Tool::SRPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: SRPM.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Id: SRPM.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/SRPM.pm.in,v $
-# $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Tool/SRPM.pm.in $
-# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
+# $Revision: 5773 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/SRPM.pm.in $
+# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.0.56';
+our $VERSION = '0.0.58';
 
 use Moose;
 
@@ -40,17 +40,17 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.56
+    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.58
 
 =head1 SYNOPSIS
 
     my $tool = LCFG::Build::Tool::SRPM->new( dir => '.' );
 
-    $tool->run;
+    $tool->execute;
 
     my $tool2 = LCFG::Build::Tool::SRPM->new_with_options();
 
-    $tool2->run;
+    $tool2->execute;
 
 =head1 DESCRIPTION
 
@@ -168,9 +168,9 @@ L<LCFG::Build::VCS> for full details.
 
 =over 4
 
-=item run
+=item execute
 
-This method first calls the run() method in L<LCFG::Build::Tool::Pack>
+This method first calls the execute() method in L<LCFG::Build::Tool::Pack>
 to generate a gzipped source tar file and the build metadata files for
 the various supported platforms (e.g. a specfile for creating binary
 RPMs).  Once that is done C<rpmbuild> is used to create a source RPM

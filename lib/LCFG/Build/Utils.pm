@@ -2,13 +2,13 @@ package LCFG::Build::Utils;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Utils.pm.in 3895 2009-04-09 07:53:55Z squinney@INF.ED.AC.UK $
+# $Id: Utils.pm.in 3893 2009-04-09 07:53:44Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils.pm.in,v $
-# $Revision: 3895 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Utils.pm.in $
-# $Date: 2009-04-09 08:53:55 +0100 (Thu, 09 Apr 2009) $
+# $Revision: 3893 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Utils.pm.in $
+# $Date: 2009-04-09 08:53:44 +0100 (Thu, 09 Apr 2009) $
 
-our $VERSION = '0.0.56';
+our $VERSION = '0.0.58';
 
 use File::Basename ();
 use File::Find     ();
@@ -353,7 +353,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils version 0.0.56
+    This documentation refers to LCFG::Build::Utils version 0.0.58
 
 =head1 SYNOPSIS
 

@@ -2,13 +2,13 @@ package LCFG::Build::Tool::CheckMacros;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: CheckMacros.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Id: CheckMacros.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/CheckMacros.pm.in,v $
-# $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Tool/CheckMacros.pm.in $
-# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
+# $Revision: 5773 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/CheckMacros.pm.in $
+# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.0.56';
+our $VERSION = '0.0.58';
 
 use File::Spec ();
 use File::Temp ();
@@ -155,7 +155,7 @@ sub complain {
     return;
 }
 
-sub run {
+sub execute {
     my ($self) = @_;
 
     my $dir       = $self->dir;
@@ -300,17 +300,17 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.56
+    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.58
 
 =head1 SYNOPSIS
 
     my $tool = LCFG::Build::Tool::CheckMacros->new( dir => '.' );
 
-    $tool->run;
+    $tool->execute;
 
     my $tool2 = LCFG::Build::Tool::CheckMacros->new_with_options();
 
-    $tool2->run;
+    $tool2->execute;
 
 =head1 DESCRIPTION
 
@@ -390,7 +390,7 @@ L<LCFG::Build::VCS> for full details.
 
 =over 4
 
-=item run
+=item execute
 
 This method should be called to check macro usage within a project. It
 will check every file which matches the specifications in the

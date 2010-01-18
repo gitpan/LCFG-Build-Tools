@@ -1,6 +1,6 @@
 ---
 name: 'LCFG-Build-Tools'
-version: 0.0.56'
+version: 0.0.58'
 author:
   - 'Stephen Quinney <squinney@inf.ed.ac.uk>'
 abstract: LCFG build system tools
@@ -17,9 +17,8 @@ requires:
   LCFG::Build::VCS: 0.0.19
   Module::Pluggable: 3.10
   Moose: 0.57
-  MooseX::App::Cmd: 0.04
+  MooseX::App::Cmd: 0.06
   Template: 2.14
-  Text::Abbreviate: 0.01
   UNIVERSAL::require: 0
   YAML::Syck: 0.98
   perl: 5.6.1
@@ -30,52 +29,52 @@ build_requires:
 provides:
   LCFG::Build::Tool:
     file: lib/LCFG/Build/Tool.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::CheckMacros:
     file: lib/LCFG/Build/Tool/CheckMacros.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::DevOSXPkg:
     file: lib/LCFG/Build/Tool/DevOSXPkg.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::DevPack:
     file: lib/LCFG/Build/Tool/DevPack.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::DevRPM:
     file: lib/LCFG/Build/Tool/DevRPM.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::MajorVersion:
     file: lib/LCFG/Build/Tool/MajorVersion.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::MinorVersion:
     file: lib/LCFG/Build/Tool/MinorVersion.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::OSXPkg:
     file: lib/LCFG/Build/Tool/OSXPkg.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::Pack:
     file: lib/LCFG/Build/Tool/Pack.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::RPM:
     file: lib/LCFG/Build/Tool/RPM.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::MicroVersion:
     file: lib/LCFG/Build/Tool/MicroVersion.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tool::SRPM:
     file: lib/LCFG/Build/Tool/SRPM.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Tools:
     file: lib/LCFG/Build/Tools.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Utils:
     file: lib/LCFG/Build/Utils.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Utils::MacOSX:
     file: lib/LCFG/Build/Utils/MacOSX.pm
-    version: '0.0.56'
+    version: '0.0.58'
   LCFG::Build::Utils::RPM:
     file: lib/LCFG/Build/Utils/RPM.pm
-    version: '0.0.56'
+    version: '0.0.58'
 generated_by: Module::Build version 0.2807
 no_index:
   dir:

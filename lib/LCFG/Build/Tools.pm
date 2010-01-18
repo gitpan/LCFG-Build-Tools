@@ -2,54 +2,22 @@ package LCFG::Build::Tools;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tools.pm.in 3588 2009-03-13 15:49:54Z squinney@INF.ED.AC.UK $
+# $Id: Tools.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tools.pm.in,v $
-# $Revision: 3588 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Tools.pm.in $
-# $Date: 2009-03-13 15:49:54 +0000 (Fri, 13 Mar 2009) $
+# $Revision: 5773 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tools.pm.in $
+# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.0.56';
-
-use Text::Abbreviate;
+our $VERSION = '0.0.58';
 
 use Moose;
 
 extends qw(MooseX::App::Cmd);
 
 use constant plugin_search_path => 'LCFG::Build::Tool';
+use constant allow_any_unambiguous_abbrev => 1;
 
 __PACKAGE__->meta->make_immutable;
-
-# This is slightly naughty as a private method from App::Cmd is being
-# overridden but I really want this feature.
-
-sub _prepare_command {
-    my ( $self, $command_input, $opt, @args ) = @_;
-
-    my @commands = $self->command_names;
-
-    # Build a list of possible abbreviations for each command.
-
-    my $abbr = Text::Abbreviate->new( { fold => 1 }, @commands );
-
-    my @full = $abbr->expand($command_input);
-
-    my $command;
-    if ( scalar @full == 0 || scalar @full > 1 ) {
-        return $self->_bad_command( $command_input, $opt, @args );
-    }
-    else {
-        $command = $full[0];
-    }
-
-    if ( my $plugin = $self->plugin_for($command) ) {
-        return $self->_plugin_prepare( $plugin, @args );
-    }
-    else {
-        return $self->_bad_command( $command, $opt, @args );
-    }
-
-}
 
 no Moose;
 1;
@@ -61,7 +29,7 @@ __END__
 
 =head1 VERSION
 
-This documentation refers to LCFG::Build::Tools version 0.0.56
+This documentation refers to LCFG::Build::Tools version 0.0.58
 
 =head1 DESCRIPTION
 

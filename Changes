@@ -1,6 +1,43 @@
-2009-04-09  SVN: new release
+2010-01-18  SVN: new release
 
-	* Release: 0.0.56
+	* Release: 0.0.58
+
+2010-01-18 18:09  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tools.pm.in: Use the new
+	  'allow_any_unambiguous_abbrev' option in App::Cmd rather than our
+	  hacky approach of overriding an internal method
+
+2010-01-18 18:08  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool/CheckMacros.pm.in,
+	  lib/LCFG/Build/Tool/DevOSXPkg.pm.in,
+	  lib/LCFG/Build/Tool/DevPack.pm.in,
+	  lib/LCFG/Build/Tool/DevRPM.pm.in,
+	  lib/LCFG/Build/Tool/MajorVersion.pm.in,
+	  lib/LCFG/Build/Tool/MicroVersion.pm.in,
+	  lib/LCFG/Build/Tool/MinorVersion.pm.in,
+	  lib/LCFG/Build/Tool/OSXPkg.pm.in, lib/LCFG/Build/Tool/Pack.pm.in,
+	  lib/LCFG/Build/Tool/RPM.pm.in, lib/LCFG/Build/Tool/SRPM.pm.in:
+	  The run() method is now named execute()
+
+2010-01-18 18:07  squinney@INF.ED.AC.UK
+
+	* Build.PL.in, LCFG-Build-Tools.spec, META.yml.in, Makefile.PL,
+	  README: Upgrade to version 0.06 of MooseX::App::Cmd
+
+2009-07-03 14:19  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.57
+
+2009-07-03 14:17  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool.pm.in: quiet attribute was missing the
+	  relevant metaclass specification
+
+2009-04-09 07:53  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.56
 
 2009-04-09 07:53  squinney@INF.ED.AC.UK
 

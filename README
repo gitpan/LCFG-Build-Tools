@@ -41,9 +41,8 @@ To use this module you will need the following:
         LCFG::Build::PkgSpec >= 0.0.22
         LCFG::Build::VCS >= 0.0.19
         Moose >= 0.57
-        MooseX::App::Cmd >= 0.04
+        MooseX::App::Cmd >= 0.06
         Template Toolkit >= 2.14
-        Text::Abbreviate
         UNIVERSAL::require
         YAML::Syck >= 0.98
 

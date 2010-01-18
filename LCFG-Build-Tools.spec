@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.0.56
+Version:        0.0.58
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.0.56.tar.gz
+Source0:        LCFG-Build-Tools-0.0.58.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -18,9 +18,8 @@ BuildRequires:  perl(File::Find::Rule)
 BuildRequires:  perl(Template) >= 2.14
 BuildRequires:  perl(Archive::Tar), perl(IO::Zlib)
 BuildRequires:  perl(RPM4)
-BuildRequires:  perl(MooseX::App::Cmd)
+BuildRequires:  perl(MooseX::App::Cmd) >= 0.06
 BuildRequires:  perl(UNIVERSAL::require)
-BuildRequires:  perl(Text::Abbreviate)
 BuildRequires:  perl(Test::Differences)
 BuildRequires:  perl(DateTime)
 Requires:       perl(LCFG::Build::PkgSpec) >= 0.0.22
@@ -30,7 +29,7 @@ Requires:       perl(File::Find::Rule)
 Requires:       perl(Template) >= 2.14
 Requires:       perl(Archive::Tar), perl(IO::Zlib)
 Requires:       perl(RPM4)
-Requires:       perl(MooseX::App::Cmd)
+Requires:       perl(MooseX::App::Cmd) >= 0.06
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 %description
@@ -93,7 +92,38 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Thu Apr 09 2009 SVN: new release
+* Mon Jan 18 2010 SVN: new release
+
+* Mon Jan 18 2010 18:09 squinney@INF.ED.AC.UK
+- lib/LCFG/Build/Tools.pm.in: Use the new
+  'allow_any_unambiguous_abbrev' option in App::Cmd rather than our
+  hacky approach of overriding an internal method
+
+* Mon Jan 18 2010 18:08 squinney@INF.ED.AC.UK
+- lib/LCFG/Build/Tool/CheckMacros.pm.in,
+  lib/LCFG/Build/Tool/DevOSXPkg.pm.in,
+  lib/LCFG/Build/Tool/DevPack.pm.in,
+  lib/LCFG/Build/Tool/DevRPM.pm.in,
+  lib/LCFG/Build/Tool/MajorVersion.pm.in,
+  lib/LCFG/Build/Tool/MicroVersion.pm.in,
+  lib/LCFG/Build/Tool/MinorVersion.pm.in,
+  lib/LCFG/Build/Tool/OSXPkg.pm.in, lib/LCFG/Build/Tool/Pack.pm.in,
+  lib/LCFG/Build/Tool/RPM.pm.in, lib/LCFG/Build/Tool/SRPM.pm.in:
+  The run() method is now named execute()
+
+* Mon Jan 18 2010 18:07 squinney@INF.ED.AC.UK
+- Build.PL.in, LCFG-Build-Tools.spec, META.yml.in, Makefile.PL,
+  README: Upgrade to version 0.06 of MooseX::App::Cmd
+
+* Fri Jul 03 2009 14:19 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.57
+
+* Fri Jul 03 2009 14:17 squinney@INF.ED.AC.UK
+- lib/LCFG/Build/Tool.pm.in: quiet attribute was missing the
+  relevant metaclass specification
+
+* Thu Apr 09 2009 07:53 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.56
 
 * Thu Apr 09 2009 07:53 squinney@INF.ED.AC.UK
 - lcfg.yml, lib/LCFG/Build/Utils.pm.in: Fixed a problem with not

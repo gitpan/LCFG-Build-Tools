@@ -2,13 +2,13 @@ package LCFG::Build::Tool::MajorVersion;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: MajorVersion.pm.in 3446 2009-03-11 13:26:13Z squinney@INF.ED.AC.UK $
+# $Id: MajorVersion.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MajorVersion.pm.in,v $
-# $Revision: 3446 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_56/lib/LCFG/Build/Tool/MajorVersion.pm.in $
-# $Date: 2009-03-11 13:26:13 +0000 (Wed, 11 Mar 2009) $
+# $Revision: 5773 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/MajorVersion.pm.in $
+# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.0.56';
+our $VERSION = '0.0.58';
 
 use Moose;
 
@@ -18,7 +18,7 @@ override 'abstract' => sub {
     return q{Tag the source tree as a particular major release};
 };
 
-override 'run' => sub {
+override 'execute' => sub {
     my ($self) = @_;
 
     return $self->majorversion;
@@ -36,17 +36,17 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MajorVersion version 0.0.56
+    This documentation refers to LCFG::Build::Tool::MajorVersion version 0.0.58
 
 =head1 SYNOPSIS
 
     my $tool = LCFG::Build::Tool::MajorVersion->new( dir => '.' );
 
-    $tool->run;
+    $tool->execute;
 
     my $tool2 = LCFG::Build::Tool::MajorVersion->new_with_options();
 
-    $tool2->run;
+    $tool2->execute;
 
 =head1 DESCRIPTION
 
@@ -141,7 +141,7 @@ L<LCFG::Build::VCS> for full details.
 
 =over 4
 
-=item run
+=item execute
 
 This calls the C<majorversion> method of
 L<LCFG::Build::Tool::MicroVersion>, you should read the documentation in
