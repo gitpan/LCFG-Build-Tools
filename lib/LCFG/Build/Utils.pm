@@ -2,14 +2,15 @@ package LCFG::Build::Utils;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Utils.pm.in 3893 2009-04-09 07:53:44Z squinney@INF.ED.AC.UK $
+# $Id: Utils.pm.in 12955 2010-07-20 13:13:37Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils.pm.in,v $
-# $Revision: 3893 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Utils.pm.in $
-# $Date: 2009-04-09 08:53:44 +0100 (Thu, 09 Apr 2009) $
+# $Revision: 12955 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Utils.pm.in $
+# $Date: 2010-07-20 14:13:37 +0100 (Tue, 20 Jul 2010) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
+use Cwd ();
 use File::Basename ();
 use File::Find     ();
 use File::Spec     ();
@@ -317,6 +318,8 @@ sub generate_srctar {
     pop @parent_dirs;
     my $parent_dir = File::Spec->catdir(@parent_dirs);
 
+    my $prev_dir = Cwd::getcwd(); # will need to go back to this later
+
     chdir $parent_dir or die "Could not cd to $parent_dir: $!\n";
 
     require Archive::Tar;
@@ -341,7 +344,9 @@ sub generate_srctar {
 
     $tar->write( $tarfile, 1 );
 
-    return;
+    chdir $prev_dir;
+
+    return $tarfile;
 }
 
 1;
@@ -353,7 +358,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils version 0.0.58
+    This documentation refers to LCFG::Build::Utils version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -460,13 +465,13 @@ overwrite any existing CMake file, if you wish. A second file is
 created, named C<lcfg.cmake>, which contains all the necessary
 functions and macros for building an LCFG project.
 
-=item generate_srctar( $tarname, $srcdir, $resultsdir )
+=item $tarfile = generate_srctar( $tarname, $srcdir, $resultsdir )
 
 Takes the name of a tarfile to generate and packages up everything in
 the specified source directory. The generated tar file will be placed
 into the results directory. If either of the the source or results
 directories are not specified then the current working directory will
-be used.
+be used. This returns the full path to the generated tar file.
 
 =back
 
@@ -497,7 +502,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

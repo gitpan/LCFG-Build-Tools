@@ -2,13 +2,13 @@ package LCFG::Build::Tool::CheckMacros;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: CheckMacros.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
+# $Id: CheckMacros.pm.in 18477 2011-11-09 12:46:54Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/CheckMacros.pm.in,v $
-# $Revision: 5773 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/CheckMacros.pm.in $
-# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
+# $Revision: 18477 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/CheckMacros.pm.in $
+# $Date: 2011-11-09 12:46:54 +0000 (Wed, 09 Nov 2011) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
 use File::Spec ();
 use File::Temp ();
@@ -81,6 +81,7 @@ my %basic = map { $_ => 'basic' } qw(
     LCFGSBIN
     LCFGSERVERDEF
     LCFGSTATUS
+    LCFGRUN
     LCFGTMP
     LCFGVAR
     LIBMANDIR
@@ -300,7 +301,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.0.58
+    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -461,7 +462,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

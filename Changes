@@ -1,6 +1,220 @@
-2010-01-18  SVN: new release
+2011-12-22  SVN: new release
 
-	* Release: 0.0.58
+	* Release: 0.2.2
+
+2011-12-22 15:26  squinney@INF.ED.AC.UK
+
+	* templates/lcfg.cmake.tt: Applied patch to fix MacOSX support, see
+	  bug#304 for details
+
+2011-11-09 12:47  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.2.1
+
+2011-11-09 12:46  squinney@INF.ED.AC.UK
+
+	* lcfg_config.yml, lib/LCFG/Build/Tool/CheckMacros.pm.in: Added
+	  LCFGRUN which is a macro which refers to a directory where
+	  component run files can be stored. Currently this is the same as
+	  LCFGTMP for backwards-compatibility reasons
+
+2011-03-03 20:36  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.2.0
+
+2011-03-03 20:30  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Utils/RPM.pm.in: The parsing and formatting of the
+	  changelogs has been completely rewritten to make it more robust
+
+2011-03-02 12:20  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.1.6
+
+2011-03-02 12:20  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, templates/lcfg.cmake.tt: Fixed SL6 support, rather
+	  annoyingly they have decided to change their LSB distributor ID
+	  string
+
+2011-02-18 13:30  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.1.5
+
+2011-02-18 13:30  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool/Submit.pm.in: Fixed submit tool typos
+
+2011-02-17 18:15  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml, lib/LCFG/Build/Tool/Submit.pm.in:
+	  LCFG-Build-Tools release: 0.1.4
+
+2011-02-17 18:13  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool.pm.in: Fixed typo
+
+2011-02-17 18:11  squinney@INF.ED.AC.UK
+
+	* templates/lcfg.cmake.tt: need to escape double-quotes in cmake
+	  strings
+
+2011-02-17 17:01  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool/DevRPM.pm.in, lib/LCFG/Build/Tool/RPM.pm.in:
+	  Added docs about the new --sign option
+
+2011-02-16 14:40  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool.pm.in, lib/LCFG/Build/Tool/DevRPM.pm.in,
+	  lib/LCFG/Build/Tool/RPM.pm.in, lib/LCFG/Build/Utils/RPM.pm.in:
+	  Added ability to pass the --sign option through to rpmbuild from
+	  the devrpm and rpm commands. This resolves
+	  https://bugs.lcfg.org/show_bug.cgi?id=387
+
+2010-10-11 12:51  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.1.3
+
+2010-10-11 12:45  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, lib/LCFG/Build/Tool/DevRPM.pm.in: Set the build
+	  directory so that we can keep the build directory when making
+	  devel packages. This makes it easier to examine what has been
+	  generated
+
+2010-10-11 12:44  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Utils/RPM.pm.in: Allow the calling code to specify
+	  the rpm BUILD directory
+
+2010-07-20 13:13  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.1.2
+
+2010-07-20 13:13  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, lib/LCFG/Build/Tool/DevPack.pm.in,
+	  lib/LCFG/Build/Tool/Pack.pm.in, lib/LCFG/Build/Utils.pm.in:
+	  Report the full path to the generated tar file when using pack
+	  and devpack. This fixes https://bugs.lcfg.org/show_bug.cgi?id=293
+
+2010-07-20 13:08  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.1.1
+
+2010-07-20 13:08  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool/Pack.pm.in, lib/LCFG/Build/Tool/Submit.pm.in:
+	  Added a new tool for submitting packages which have been built
+	  using build tools
+
+2010-07-20 13:08  squinney@INF.ED.AC.UK
+
+	* templates/lcfg.cmake.tt: Improved the setting of the cpack vendor
+	  field a bit more. Note this does not including the string
+	  reversal code from https://bugs.lcfg.org/show_bug.cgi?id=304, I'm
+	  not feeling brave enough today
+
+2010-07-12 15:48  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.1.0
+
+2010-07-12 15:48  squinney@INF.ED.AC.UK
+
+	* lcfg.yml: Noted Fedora 13 support
+
+2010-07-12 15:47  squinney@INF.ED.AC.UK
+
+	* mapping_config.yml, templates/lcfg.cmake.tt: Reworked how
+	  CPACK_PACKAGE_VENDOR gets set so that it can be controlled from
+	  CMakeLists.txt
+
+2010-07-12 15:44  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, lib/LCFG/Build/Tool/DevRPM.pm.in,
+	  lib/LCFG/Build/Tool/RPM.pm.in, lib/LCFG/Build/Tool/SRPM.pm.in,
+	  lib/LCFG/Build/Tools.pm.in, lib/LCFG/Build/Utils/RPM.pm.in:
+	  Completely reimplemented how RPMs get built to avoid a dependency
+	  on RPM4 which does not work with newer versions of rpmlib
+
+2010-07-12 15:42  squinney@INF.ED.AC.UK
+
+	* templates/build.cmake.tt: fixed the conditional which prevents
+	  the inclusion of *.cin templates for template files
+
+2010-07-12 15:41  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Utils.pm.in: Fixed a bug where we did not return
+	  to the previous working directory after building the source tar
+	  file
+
+2010-07-12 14:49  squinney@INF.ED.AC.UK
+
+	* LCFG-Build-Tools.spec: Added build-requirement on
+	  perl(Test::More)
+
+2010-07-12 12:31  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, templates/lcfg.cmake.tt: implemented most of patch to
+	  improve MacOSX support from
+	  https://bugs.lcfg.org/show_bug.cgi?id=304
+
+2010-07-12 12:30  squinney@INF.ED.AC.UK
+
+	* templates/build.cmake.tt: Added support for isntalling the
+	  meta-files (README and ChangeLog) on MacOSX. This is done with
+	  the new lcfg_add_meta() macro. This is not necessary on
+	  Fedora/Redhat as it is handled in the specfile
+
+2010-07-12 12:28  squinney@INF.ED.AC.UK
+
+	* mapping_config.yml: map vendor to CPACK_PACKAGE_VENDOR
+
+2010-07-12 11:24  squinney@INF.ED.AC.UK
+
+	* mapping_config.yml: Added translation of major, minor and micro
+	  version fields into the relevant cpack variables. This fixes
+	  https://bugs.lcfg.org/show_bug.cgi?id=303
+
+2010-02-19 12:02  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.61
+
+2010-02-19 12:01  squinney@INF.ED.AC.UK
+
+	* templates/build.cmake.tt: Now allowing any files to be in the
+	  templates directory, previous restrictions were causing pain
+
+2010-02-19 11:37  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.60
+
+2010-02-19 11:37  squinney@INF.ED.AC.UK
+
+	* lcfg.yml, templates/build.cmake.tt: Rewrote the
+	  lcfg_add_templates() macro so that it supports including a tree
+	  of templates rather than just looking one-level deep
+
+2010-02-19 10:30  squinney@INF.ED.AC.UK
+
+	* templates/lcfg.cmake.tt: Added detection of Fedora platforms.
+	  Thanks to Chris Cooke for the patch, this fixes:
+	  https://bugs.lcfg.org/show_bug.cgi?id=219
+
+2010-02-10 14:39  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.59
+
+2010-02-10 14:39  squinney@INF.ED.AC.UK
+
+	* templates/build.cmake.tt: Fixed small bug in Perl-module tree
+	  handling where it would also include the nagios tree when it
+	  exists
+
+2010-01-18 18:09  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.0.58
 
 2010-01-18 18:09  squinney@INF.ED.AC.UK
 

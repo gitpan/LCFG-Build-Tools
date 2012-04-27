@@ -2,13 +2,13 @@ package LCFG::Build::Tool::SRPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: SRPM.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
+# $Id: SRPM.pm.in 12894 2010-07-12 15:44:11Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/SRPM.pm.in,v $
-# $Revision: 5773 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/SRPM.pm.in $
-# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
+# $Revision: 12894 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/SRPM.pm.in $
+# $Date: 2010-07-12 16:44:11 +0100 (Mon, 12 Jul 2010) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
 use Moose;
 
@@ -40,7 +40,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::SRPM version 0.0.58
+    This documentation refers to LCFG::Build::Tool::SRPM version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -198,8 +198,7 @@ required: L<LCFG::Build::Tool::Pack>, L<LCFG::Build::PkgSpec>,
 L<LCFG::Build::VCS> and VCS helper module for your preferred
 version-control system.
 
-For building RPMs you will also need L<LCFG::Build::Utils::RPM> which
-uses the L<RPM4> module.
+For building RPMs you will also need L<LCFG::Build::Utils::RPM>
 
 =head1 SEE ALSO
 
@@ -211,7 +210,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

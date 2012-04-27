@@ -40,6 +40,10 @@ LCFGROTATED:
   value: /etc/logrotate.d
   description: "Directory for log rotate config files"
   type: directory
+LCFGRUN:
+  value: /var/lcfg/tmp
+  description: "Directory for component run files"
+  type: directory
 LCFGTMP:
   value: /var/lcfg/tmp
   description: "Directory for temporary files"

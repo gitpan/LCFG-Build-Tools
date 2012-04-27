@@ -2,13 +2,13 @@ package LCFG::Build::Tool::RPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: RPM.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
+# $Id: RPM.pm.in 15905 2011-02-17 17:01:27Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/RPM.pm.in,v $
-# $Revision: 5773 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/RPM.pm.in $
-# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
+# $Revision: 15905 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/RPM.pm.in $
+# $Date: 2011-02-17 17:01:27 +0000 (Thu, 17 Feb 2011) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
 use LCFG::Build::Utils::RPM;
 use File::Basename ();
@@ -33,6 +33,13 @@ has 'deps' => (
     documentation => 'Build dependency checking',
 );
 
+has 'sign' => (
+    is            => 'rw',
+    isa           => 'Bool',
+    default       => 0,
+    documentation => 'Embed a GPG signature in the package',
+);
+
 override 'abstract' => sub {
     return q{Build binary RPMs from the tagged source tree};
 };
@@ -40,11 +47,17 @@ override 'abstract' => sub {
 override 'execute' => sub {
     my ($self) = @_;
 
-    super;
+    super; # packs the source
 
     my %opts;
     if ( !$self->deps ) {
         $opts{nodeps} = 1;
+    }
+    if ( $self->sourceonly ) {
+        $opts{sourceonly} = 1;
+    }
+    if ( $self->sign ) {
+        $opts{sign} = 1;
     }
 
     my $spec = $self->spec;
@@ -62,24 +75,18 @@ override 'execute' => sub {
     my $specname = $packname . '.spec';
     my $specfile = File::Spec->catfile( $outdir, $specname );
 
-    my $result = LCFG::Build::Utils::RPM->build( $tarfile, $specfile,
-        $self->sourceonly, \%opts );
+    my $result = LCFG::Build::Utils::RPM->build( $outdir, $specfile, \%opts );
 
     $self->log("Successfully built source package for $module");
 
-    File::Copy::copy( $result->{source}, $outdir );
-    my $basename = File::Basename::basename( $result->{source} );
-    my $source_path = File::Spec->catfile( $outdir, $basename );
+    my $source_path = $result->{source};
     $self->log("Source: $source_path");
 
     if ( !$self->sourceonly ) {
         $self->log("Successfully built packages for $module");
 
         for my $package ( @{ $result->{packages} } ) {
-            File::Copy::copy( $package, $outdir );
-            my $basename = File::Basename::basename($package);
-            my $pkg_path = File::Spec->catfile( $outdir, $basename );
-            $self->log("Package: $pkg_path");
+            $self->log("Package: $package");
         }
 
     }
@@ -99,7 +106,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::RPM version 0.0.58
+    This documentation refers to LCFG::Build::Tool::RPM version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -206,6 +213,11 @@ the LCFG build metadata file.
 This is a boolean value which controls whether the binary packages
 should be built as well as the source RPM.
 
+=item sign
+
+This is a boolean value which controls whether C<rpmbuild> should
+embed a GPG signature in the package.
+
 =item deps
 
 This is a boolean value which controls whether C<rpmbuild> checks the
@@ -268,8 +280,7 @@ required: L<LCFG::Build::Tool::Pack>, L<LCFG::Build::PkgSpec>,
 L<LCFG::Build::VCS> and VCS helper module for your preferred
 version-control system.
 
-For building RPMs you will also need L<LCFG::Build::Utils::RPM> which
-uses the L<RPM4> module.
+For building RPMs you will also need L<LCFG::Build::Utils::RPM>.
 
 =head1 SEE ALSO
 
@@ -281,7 +292,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

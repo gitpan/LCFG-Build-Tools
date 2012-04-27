@@ -2,13 +2,13 @@ package LCFG::Build::Tool::DevPack;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: DevPack.pm.in 5773 2010-01-18 18:09:28Z squinney@INF.ED.AC.UK $
+# $Id: DevPack.pm.in 12955 2010-07-20 13:13:37Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/DevPack.pm.in,v $
-# $Revision: 5773 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool/DevPack.pm.in $
-# $Date: 2010-01-18 18:09:28 +0000 (Mon, 18 Jan 2010) $
+# $Revision: 12955 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/DevPack.pm.in $
+# $Date: 2010-07-20 14:13:37 +0100 (Tue, 20 Jul 2010) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
 use File::Path ();
 use File::Spec ();
@@ -139,8 +139,10 @@ sub execute {
         # file.
 
         my $tarname = $new_spec->tarname;
-        LCFG::Build::Utils::generate_srctar( $tarname, $srcdir, $outdir );
+        my $tarfile =
+          LCFG::Build::Utils::generate_srctar( $tarname, $srcdir, $outdir );
         $self->log('Successfully generated source tar file.');
+        $self->log("Tar file is: $tarfile");
 
     }
 
@@ -157,7 +159,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::DevPack version 0.0.58
+    This documentation refers to LCFG::Build::Tool::DevPack version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -328,7 +330,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

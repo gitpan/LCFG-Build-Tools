@@ -2,13 +2,13 @@ package LCFG::Build::Tool;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tool.pm.in 4353 2009-07-03 14:17:57Z squinney@INF.ED.AC.UK $
+# $Id: Tool.pm.in 15911 2011-02-17 18:13:02Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool.pm.in,v $
-# $Revision: 4353 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Tool.pm.in $
-# $Date: 2009-07-03 15:17:57 +0100 (Fri, 03 Jul 2009) $
+# $Revision: 15911 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool.pm.in $
+# $Date: 2011-02-17 18:13:02 +0000 (Thu, 17 Feb 2011) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
 use File::HomeDir;
 use File::Spec;
@@ -27,7 +27,7 @@ has 'dryrun' => (
 );
 
 has 'quiet' => (
-    metaclass     => 'MooseX::Getopt::Meta::Attribute',
+    traits        => ['Getopt'],
     is            => 'rw',
     isa           => 'Bool',
     default       => 0,
@@ -163,7 +163,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool version 0.0.58
+    This documentation refers to LCFG::Build::Tool version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -291,7 +291,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

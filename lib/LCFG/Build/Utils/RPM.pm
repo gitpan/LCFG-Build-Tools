@@ -2,18 +2,22 @@ package LCFG::Build::Utils::RPM;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: RPM.pm.in 3588 2009-03-13 15:49:54Z squinney@INF.ED.AC.UK $
+# $Id: RPM.pm.in 16250 2011-03-03 20:30:10Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/RPM.pm.in,v $
-# $Revision: 3588 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_0_58/lib/LCFG/Build/Utils/RPM.pm.in $
-# $Date: 2009-03-13 15:49:54 +0000 (Fri, 13 Mar 2009) $
+# $Revision: 16250 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Utils/RPM.pm.in $
+# $Date: 2011-03-03 20:30:10 +0000 (Thu, 03 Mar 2011) $
 
-our $VERSION = '0.0.58';
+our $VERSION = '0.2.2';
 
 use DateTime   ();
+use English qw(-no_match_vars);
 use File::Copy ();
-use File::Path ();
+use File::Find::Rule ();
 use File::Spec ();
+use File::Temp ();
+use IO::File ();
+use Text::Wrap ();
 
 use LCFG::Build::Utils;
 
@@ -71,168 +75,189 @@ sub generate_metadata {
     return;
 }
 
-sub _format_entry {
-    my ( $date, $release, $rest, @body ) = @_;
+sub format_changelog {
+  my ($file) = @_;
 
-    my ( $year, $month, $day ) = split /-/, $date;
-    my $dt = DateTime->new( year   => $year,
-                            month  => $month,
-                            day    => $day );
+  my @entries = parse_changelog($file);
 
-    my $formatted_date = $dt->strftime('%a %b %d %Y');
+  if ( scalar @entries == 0 ) {
+    my $dt = DateTime->now();
+    my $entry = {
+      year  => $dt->year,
+      month => $dt->month,
+      day   => $dt->day,
+    };
+    return format_entry($entry);
+  }
 
-    if ( $rest =~ /\s*cvs:\s*new release/i && defined $release ) {
-        $rest = "<<<< Release: $release >>>>";
-    }
-    $rest =~ s/ +/ /g;
+  my $changelog = q{};
+  for my $entry (@entries) {
+    $changelog .= format_entry($entry);
+  }
 
-    my $output = "* $formatted_date $rest\n";
-    for my $item (@body) {
-        $item =~ s/\n+(  )?/\n  /g;
-        $output .= "- $item\n";
-    }
-    $output .= "\n";
-
-    return $output;
+  return $changelog;
 }
 
-sub format_changelog {
-    my ($logfile) = @_;
+sub format_entry {
+  my ($entry) = @_;
 
-    my $fh = IO::File->new( $logfile, 'r' )
-        or die "Could not open $logfile: $!\n";
+  my $dt = eval { DateTime->new( year  => $entry->{year},
+                                 month => $entry->{month},
+                                 day   => $entry->{day} ) };
 
-    # Big assumption here that the changelog is in the correct
-    # format for cl2rpm to understand.
+  if ( $EVAL_ERROR || !defined $dt ) {
+    return q{};
+  }
 
-    my $changelog;
-    my ( $date, $tab, $release, $rest, @body );
+  my $formatted_date = $dt->strftime('%a %b %d %Y');
 
-    while ( defined( my $line = <$fh> ) ) {
-        chomp $line;
+  my $title = $entry->{title};
+  if ( !defined $title ) {
+    $title = $ENV{EMAIL} || getpwuid $UID;
+  }
 
-        if ( $line =~ m/^(\d+-\d+-\d+)\s*(.*)$/ ) {
+  if ( $title =~ /\s*cvs:\s*new release/i && defined $entry->{release} ) {
+    $title = "<<<< Release: $entry->{release} >>>>";
+  }
 
-            if ( defined $date ) {
-                $changelog .= _format_entry( $date, $release, $rest, @body );
+  my $output = q{* } . $formatted_date . q{ } . $title . "\n";
 
-                undef $release;
-                $tab  = "\t";
-                @body = ();
-            }
+  my @body;
+  if ( defined $entry->{body} ) {
+    @body = @{$entry->{body}};
+  }
 
-            ( $date, $rest ) = ( $1, $2 );
+  if ( scalar @body == 0 ) {
+    push @body, 'No release information available';
+  }
 
+  for my $item (@body) {
+    $output .= Text::Wrap::wrap( '- ', '  ', $item ) . "\n";
+  }
+
+  $output .= "\n";
+
+  return $output;
+}
+
+sub parse_changelog {
+  my ($file) = @_;
+
+  my @data;
+  if ( !-f $file || -z $file ) {
+    return @data;
+  }
+
+  my $fh = IO::File->new( $file, 'r' )
+    or die "Could not open file '$file': $OS_ERROR\n";
+
+  my $current;
+  while ( defined( my $line = <$fh> ) ) {
+    chomp $line;
+
+    if ( $line =~ m/^\s*$/ ) {
+      next;
+    } elsif ( $line =~ m/^(\d+)-(\d+)-(\d+)\s*(.*)$/ ) {
+      $current = $data[$#data + 1] = { year  => $1,
+                                       month => $2,
+                                       day   => $3,
+                                       title => $4,
+                                       body  => [] };
+    } else {
+      $line =~ s/^\s+//;
+      $line =~ s/\s+$//;
+
+      my $body = $current->{body};
+      if ( $line =~ m/^\*\s*(.+)/ ) {
+        my $entry = $1;
+        if ( $entry =~ m/^release:\s*(.+)$/i ) {
+          $current->{release} = $1;
         }
-        elsif ( $line =~ m/^\s+\*\s*release:\s*(.*)$/i ) {
-            $release = $1;
-        }
-        elsif ( $line =~ m/^(\s+)\*\s*(.*)$/ ) {
-            $tab = $1;
-            push @body, $2;
-        }
-        elsif ( $line =~ /^\s+.*$/ ) {
-            $line =~ s/^\Q$tab\E//;
-            if ( $tab eq "\t" ) {
-                $line =~ s/^        //;
-            }
 
-            if ( length $line > 0 ) {
-                if ( scalar @body > 0 ) {
-                    $body[-1] = join "\n", $body[-1], $line;
-                }
-                else {
-                    push @body, $line;
-                }
-            }
-        }
+        push @{$body}, $entry;
+      } elsif ( scalar @{$body} == 0 ) {
+        push @{$body}, $line;
+      } else {
+        ${$body}[$#{$body}] .= " $line";
+      }
     }
 
-    $changelog .= _format_entry( $date, $release, $rest, @body );
+  }
 
-    return $changelog;
+  return @data;
 }
 
 sub build {
-    my ( $self, $tarfile, $specfile, $sourceonly, $options ) = @_;
+    my ( $self, $dir, $specfile, $options ) = @_;
 
     if ( !defined $options ) {
         $options = {};
     }
 
-    require RPM4;
-
-    my %dirs = (
-        builddir  => RPM4::expand('%_builddir'),     # BUILD
-        specdir   => RPM4::expand('%_specdir'),      # SPECS
-        sourcedir => RPM4::expand('%_sourcedir'),    # SOURCES
-        srcrpmdir => RPM4::expand('%_srcrpmdir'),    # SRPMS
-        rpmdir    => RPM4::expand('%_rpmdir'),       # RPMS
-    );
-
-    for my $dir ( values %dirs ) {
-        if ( !-d $dir ) {
-            eval { File::Path::mkpath $dir };
-            if ($@) {
-                die "Could not create $dir: $@\n";
-            }
+    my @args;
+    if ( $options->{sourceonly} ) {
+        @args = ( '-bs', '--nodeps' );
+    } else {
+        @args = ( '-ba' );
+        if ( $options->{nodeps} ) {
+            push @args, '--nodeps';
         }
     }
-
-    if ( defined $tarfile ) {
-        File::Copy::copy( $tarfile, $dirs{sourcedir} );
+    if ( $options->{sign} ) {
+        push @args, '--sign';
     }
 
-    my @buildflags;
-    if ($sourceonly) {
-        @buildflags = qw(PACKAGESOURCE);
-    }
-    else {
-        @buildflags = qw(PREP
-                         BUILD
-                         FILECHECK
-                         INSTALL
-                         CHECK
-                         PACKAGESOURCE
-                         PACKAGEBINARY);
+    my $tempdir = File::Temp::tempdir( 'buildtools-XXXXX',
+                                       TMPDIR  => 1,
+                                       CLEANUP => 1 );
+
+    my $builddir;
+    if ( $options->{builddir} ) {
+      $builddir = $options->{builddir};
+    } else {
+      $builddir = File::Spec->catdir( $tempdir, 'BUILD' );
     }
 
-    my $rpmspec = RPM4::Spec->new($specfile)
-      or die "Failed to parse $specfile\n";
-
-    my $db = RPM4::newdb();
-
-    if ( !$options->{nodeps} ) {
-
-        my $sh = $rpmspec->srcheader()
-            or die "Can't get source header from spec object\n";
-
-        $db->transadd( $sh, q{}, 0 );
-        $db->transcheck;
-
-        my $pbs = RPM4::Transaction::Problems->new($db);
-        $db->transreset();
-
-        if ($pbs) {
-            $pbs->print_all( \*STDERR );
-            die "rpmbuild failed\n";
-        }
-
+    if ( !-d $builddir ) {
+      mkdir $builddir or die "Could not create directory $builddir: $!\n";
     }
 
-    my $result = eval { $db->specbuild( $rpmspec, [@buildflags] ) };
-    if ($@) {
-        die "rpmbuild failed: $@\n";
-    }
-    elsif ( $result != 0 ) {
-        die "rpmbuild failed\n";
+    my $rpmdir = File::Spec->catdir( $tempdir, 'RPMS' );
+    mkdir $rpmdir or die "Could not create directory $rpmdir: $!\n";
+
+    my $buildroot = File::Spec->catdir( $tempdir, 'BUILDROOT' );
+
+    my @cmd = ( '/usr/bin/rpmbuild', @args,
+                '--define', "_topdir $dir",
+                '--define', "_builddir $builddir",
+                '--define', "_specdir $dir",
+                '--define', "_sourcedir $dir",
+                '--define', "_srcrpmdir $dir",
+                '--define', "_rpmdir $rpmdir",
+                '--define', "_buildrootdir $buildroot",
+                $specfile );
+
+    my $ok = system @cmd;
+
+    if ( $ok != 0 ) {
+        die "Failed to build $specfile\n";
     }
 
-    my $source = $rpmspec->srcrpm;
+    my ($source) =
+      File::Find::Rule->file()->name('*.src.rpm')->maxdepth(1)->in($dir);
 
     my @packages;
-    if ( !$sourceonly ) {
-        @packages = $rpmspec->binrpm;
+    if ( !$options->{sourceonly} ) {
+        my @rpms = File::Find::Rule->file()->name('*.rpm')->in($rpmdir);
+
+        for my $rpm (sort @rpms) {
+            my $basename = ( File::Spec->splitpath($rpm) )[2];
+            my $target = File::Spec->catfile( $dir, $basename );
+            File::Copy::move( $rpm, $target )
+                or die "Could not move $rpm to $target: $!\n";
+
+            push @packages, $target;
+        }
     }
 
     return {
@@ -250,7 +275,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::RPM version 0.0.58
+    This documentation refers to LCFG::Build::Utils::RPM version 0.2.2
 
 =head1 SYNOPSIS
 
@@ -283,22 +308,20 @@ package metadata object, an input directory where the template RPM
 specfile and change log files are stored and an output directory where
 the generate file should be placed.
 
-=item build( $tarfile, $specfile, $sourceonly, $options )
+=item build( $dir, $specfile, $options )
 
-This actually builds the RPM packages using the RPM4 wrapper around
-C<rpmbuild>. It requires the name of the source tar file and the RPM
-specfile. Optionally it can do a source-only build, and a reference to
-a hash of options can be passed in, this allows one to specify things
-like making rpmbuild ignore dependencies with "nodeps". See the
-RPM4::Spec Perl documentation for full details of the supported
-options.
+This actually builds the RPM packages using the C<rpmbuild>
+command. It requires the name of the directory which contains the
+source tar file and the RPM specfile. A reference to a hash of options
+can be passed in, this allows one to specify things like only building
+the source package (with "sourceonly") and making rpmbuild ignore
+dependencies with "nodeps".
 
 =back
 
 =head1 DEPENDENCIES
 
-For building packages you will need RPM4(3), for formatting the change
-log file you will need DateTime(3).
+For formatting the change log file you will need DateTime(3).
 
 =head1 PLATFORMS
 
@@ -306,7 +329,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-FedoraCore5, FedoraCore6, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5
 
 =head1 BUGS AND LIMITATIONS
 

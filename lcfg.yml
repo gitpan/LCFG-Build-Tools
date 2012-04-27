@@ -7,12 +7,12 @@ build:
   gencmake: 0
   remove_input_after_translate: 1
   translate_before_pack: 1
-date: 01/18/10 18:09:27
+date: 22/12/11 15:26:53
 license: gpl
 name: LCFG-Build-Tools
 platforms: 
-  - FedoraCore5
-  - FedoraCore6
+  - Fedora12
+  - Fedora13
   - ScientificLinux5
 release: 1
 schema: 1
@@ -21,4 +21,4 @@ translate:
 vcs: 
   genchangelog: 1
   logname: Changes
-version: 0.0.58
+version: 0.2.2

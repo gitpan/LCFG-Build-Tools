@@ -118,13 +118,13 @@ ENDMACRO(lcfg_add_perl_module)
 
 MACRO(lcfg_add_perl_tree)
 
-  IF(${ARGC} MATCHES 1)
+  IF(${ARGC} GREATER 0)
     SET(dir "${CMAKE_CURRENT_SOURCE_DIR}/${ARGV0}")
-  ELSE(${ARGC} MATCHES 1)
+  ELSE(${ARGC} GREATER 0)
     SET(dir ${CMAKE_CURRENT_SOURCE_DIR})
-  ENDIF(${ARGC} MATCHES 1)
+  ENDIF(${ARGC} GREATER 0)
 
-  FILE(GLOB_RECURSE perlmods RELATIVE ${dir} "*.pm")
+  FILE(GLOB_RECURSE perlmods RELATIVE ${dir} "${dir}/*.pm")
   FOREACH(perlmod ${perlmods})
     lcfg_add_perl_module("${dir}/${perlmod}" ${perlmod})
   ENDFOREACH(perlmod)
@@ -168,9 +168,40 @@ ENDMACRO(lcfg_add_template)
 
 MACRO(lcfg_add_templates)
 
-  file(GLOB templates "template" "templates/*.tmpl" "templates/*.tt")
+  # Allow non-standard templates directory
 
-  lcfg_add_template(${templates})
+  IF(${ARGC} GREATER 0)
+    SET(dir "${CMAKE_CURRENT_SOURCE_DIR}/${ARGV0}")
+  ELSE(${ARGC} GREATER 0)
+    SET(dir "${CMAKE_CURRENT_SOURCE_DIR}/templates")
+  ENDIF(${ARGC} GREATER 0)
+
+  # Allow non-standard destination directory
+
+  IF(${ARGC} GREATER 1)
+    SET(destination "${ARGV1}")
+  ELSE(${ARGC} GREATER 1)
+    SET(destination "${LCFG_TMPLDIR}")
+  ENDIF(${ARGC} GREATER 1)
+
+  # New-style templates directory, can contain sub-directories
+
+  FILE(GLOB_RECURSE templates RELATIVE ${dir} "${dir}/*")
+
+  FOREACH(template ${templates})
+    IF(${template} MATCHES "\\.cin$")
+      # nothing here...
+    ELSE(${template} MATCHES "\\.cin$")
+      GET_FILENAME_COMPONENT(dirname ${template} PATH)
+      INSTALL(FILES "${dir}/${template}"
+              DESTINATION "${destination}/${dirname}")
+    ENDIF(${template} MATCHES "\\.cin$")
+  ENDFOREACH(template)
+
+  # Old-style single template file named 'template' in the top-level
+  #  of the project directory.
+
+  install(FILES "template" DESTINATION ${destination} OPTIONAL)
 
 ENDMACRO(lcfg_add_templates)
 
@@ -191,6 +222,14 @@ MACRO(lcfg_add_nagios_support)
 
 ENDMACRO(lcfg_add_nagios_support)
 
+MACRO(lcfg_add_meta)
+
+  install(FILES README ChangeLog
+          DESTINATION share/doc/${LCFG_FULLNAME}-${LCFG_VERSION}
+          OPTIONAL)
+
+ENDMACRO(lcfg_add_meta)
+
 MACRO(lcfg_add_component compname)
 
   lcfg_translate()
@@ -206,6 +245,13 @@ MACRO(lcfg_add_component compname)
   # those which do not.
 
   install(DIRECTORY DESTINATION ${CONFIGDIR})
+
+  # This is done here only for MacOSX as fedora/redhat do this in the
+  # specfile.
+
+  IF(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+     lcfg_add_meta()
+  ENDIF(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
 
 ENDMACRO(lcfg_add_component)
 
