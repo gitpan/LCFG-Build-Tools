@@ -5,10 +5,10 @@ use warnings;
 # $Id: DevRPM.pm.in 15905 2011-02-17 17:01:27Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/DevRPM.pm.in,v $
 # $Revision: 15905 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/DevRPM.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool/DevRPM.pm.in $
 # $Date: 2011-02-17 17:01:27 +0000 (Thu, 17 Feb 2011) $
 
-our $VERSION = '0.2.2';
+our $VERSION = '0.3.1';
 
 use LCFG::Build::Utils::RPM;
 use File::Basename ();
@@ -110,7 +110,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::DevRPM version 0.2.2
+    This documentation refers to LCFG::Build::Tool::DevRPM version 0.3.1
 
 =head1 SYNOPSIS
 
@@ -297,7 +297,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-Fedora12, Fedora13, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5, ScientificLinux6, MacOSX7
 
 =head1 BUGS AND LIMITATIONS
 

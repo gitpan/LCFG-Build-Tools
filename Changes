@@ -1,6 +1,33 @@
-2011-12-22  SVN: new release
+2012-05-18  SVN: new release
 
-	* Release: 0.2.2
+	* Release: 0.3.1
+
+2012-05-18 17:03  squinney@INF.ED.AC.UK
+
+	* Build.PL.in, LCFG-Build-Tools.spec, META.yml.in, Makefile.PL,
+	  README: Added the missing dependency on the Readonly module
+
+2012-05-18 16:54  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.3.0
+
+2012-05-18 16:54  squinney@INF.ED.AC.UK
+
+	* ., LCFG-Build-Tools.spec, MANIFEST, META.yml.in, lcfg.yml,
+	  lib/LCFG/Build/Tool/DevOSXPkg.pm.in,
+	  lib/LCFG/Build/Tool/OSXPkg.pm.in,
+	  lib/LCFG/Build/Utils/MacOSX.pm.in,
+	  lib/LCFG/Build/Utils/OSXPkg.pm.in, t/01_load.t: Implemented
+	  creating Apple Packages via the built in "pkgbuild" tool.
+	  This initial commit can only process projects that use CMake to
+	  build
+	  and install. Thanks go to Kenny MacDonald for adding this new
+	  functionality. This change closes
+	  https://bugs.lcfg.org/show_bug.cgi?id=565
+
+2011-12-22 15:26  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.2.2
 
 2011-12-22 15:26  squinney@INF.ED.AC.UK
 

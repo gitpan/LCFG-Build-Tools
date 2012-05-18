@@ -22,6 +22,7 @@ WriteMakefile
                            'YAML::Syck' => '0.98',
                            'Template' => '2.14',
                            'DateTime' => 0,
+                           'Readonly' => '0',
                            'Test::More' => 0,
                            'Test::Differences' => 0,
                            'LCFG::Build::PkgSpec' => '0.0.22',

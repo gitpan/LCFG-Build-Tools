@@ -5,10 +5,10 @@ use warnings;
 # $Id: MinorVersion.pm.in 5770 2010-01-18 18:08:16Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MinorVersion.pm.in,v $
 # $Revision: 5770 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/MinorVersion.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool/MinorVersion.pm.in $
 # $Date: 2010-01-18 18:08:16 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.2.2';
+our $VERSION = '0.3.1';
 
 use Moose;
 
@@ -36,7 +36,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MinorVersion version 0.2.2
+    This documentation refers to LCFG::Build::Tool::MinorVersion version 0.3.1
 
 =head1 SYNOPSIS
 
@@ -179,7 +179,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-Fedora12, Fedora13, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5, ScientificLinux6, MacOSX7
 
 =head1 BUGS AND LIMITATIONS
 

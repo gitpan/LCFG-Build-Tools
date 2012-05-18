@@ -7,13 +7,16 @@ build:
   gencmake: 0
   remove_input_after_translate: 1
   translate_before_pack: 1
-date: 22/12/11 15:26:53
+date: 18/05/12 17:03:20
 license: gpl
 name: LCFG-Build-Tools
+orgident: org.lcfg
 platforms: 
   - Fedora12
   - Fedora13
   - ScientificLinux5
+  - ScientificLinux6
+  - MacOSX7
 release: 1
 schema: 1
 translate: 
@@ -21,4 +24,4 @@ translate:
 vcs: 
   genchangelog: 1
   logname: Changes
-version: 0.2.2
+version: 0.3.1

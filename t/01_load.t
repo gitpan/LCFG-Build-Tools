@@ -7,7 +7,7 @@ use_ok('LCFG::Build::Utils');
 
 use_ok('LCFG::Build::Utils::RPM');
 
-use_ok('LCFG::Build::Utils::MacOSX');
+use_ok('LCFG::Build::Utils::OSXPkg');
 
 use_ok('LCFG::Build::Tool');
 

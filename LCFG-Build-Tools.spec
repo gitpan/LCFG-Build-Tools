@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.2.2
+Version:        0.3.1
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.2.2.tar.gz
+Source0:        LCFG-Build-Tools-0.3.1.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -20,7 +20,7 @@ BuildRequires:  perl(Archive::Tar), perl(IO::Zlib)
 BuildRequires:  perl(MooseX::App::Cmd) >= 0.06
 BuildRequires:  perl(UNIVERSAL::require)
 BuildRequires:  perl(Test::Differences), perl(Test::More)
-BuildRequires:  perl(DateTime)
+BuildRequires:  perl(DateTime), perl(Readonly)
 Requires:       perl(LCFG::Build::PkgSpec) >= 0.0.22
 Requires:       perl(LCFG::Build::VCS) >= 0.0.19
 Requires:       perl(YAML::Syck) >= 0.98
@@ -80,7 +80,7 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorlib}/LCFG/Build/Tool.pm
 %{perl_vendorlib}/LCFG/Build/Tools.pm
 %{perl_vendorlib}/LCFG/Build/Utils.pm
-%{perl_vendorlib}/LCFG/Build/Utils/MacOSX.pm
+%{perl_vendorlib}/LCFG/Build/Utils/OSXPkg.pm
 %{perl_vendorlib}/LCFG/Build/Utils/RPM.pm
 /usr/share/lcfgbuild/lcfg_config.yml
 /usr/share/lcfgbuild/mapping_config.yml
@@ -90,8 +90,31 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Thu Dec 22 2011 SVN: new release
-- Release: 0.2.2
+* Fri May 18 2012 SVN: new release
+- Release: 0.3.1
+
+* Fri May 18 2012 17:03 squinney@INF.ED.AC.UK
+- Build.PL.in, LCFG-Build-Tools.spec, META.yml.in, Makefile.PL,
+  README: Added the missing dependency on the Readonly module
+
+* Fri May 18 2012 16:54 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.3.0
+
+* Fri May 18 2012 16:54 squinney@INF.ED.AC.UK
+- ., LCFG-Build-Tools.spec, MANIFEST, META.yml.in, lcfg.yml,
+  lib/LCFG/Build/Tool/DevOSXPkg.pm.in,
+  lib/LCFG/Build/Tool/OSXPkg.pm.in,
+  lib/LCFG/Build/Utils/MacOSX.pm.in,
+  lib/LCFG/Build/Utils/OSXPkg.pm.in, t/01_load.t: Implemented
+  creating Apple Packages via the built in "pkgbuild" tool.
+  This initial commit can only process projects that use CMake to
+  build
+  and install. Thanks go to Kenny MacDonald for adding this new
+  functionality. This change closes
+  https://bugs.lcfg.org/show_bug.cgi?id=565
+
+* Thu Dec 22 2011 15:26 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.2.2
 
 * Thu Dec 22 2011 15:26 squinney@INF.ED.AC.UK
 - templates/lcfg.cmake.tt: Applied patch to fix MacOSX support, see

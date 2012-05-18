@@ -5,10 +5,10 @@ use warnings;
 # $Id: Pack.pm.in 12955 2010-07-20 13:13:37Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/Pack.pm.in,v $
 # $Revision: 12955 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/Pack.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool/Pack.pm.in $
 # $Date: 2010-07-20 14:13:37 +0100 (Tue, 20 Jul 2010) $
 
-our $VERSION = '0.2.2';
+our $VERSION = '0.3.1';
 
 use File::Path ();
 use File::Spec ();
@@ -141,7 +141,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::Pack version 0.2.2
+    This documentation refers to LCFG::Build::Tool::Pack version 0.3.1
 
 =head1 SYNOPSIS
 
@@ -309,7 +309,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-Fedora12, Fedora13, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5, ScientificLinux6, MacOSX7
 
 =head1 BUGS AND LIMITATIONS
 

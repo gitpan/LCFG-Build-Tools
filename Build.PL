@@ -11,7 +11,7 @@ my $build = Module::Build->new(
     module_name   => 'LCFG::Build::Tools',
     dist_abstract => 'LCFG build system tools',
     dist_author   => 'Stephen Quinney <squinney@inf.ed.ac.uk>',
-    dist_version  => '0.2.2',
+    dist_version  => '0.3.1',
     license => 'gpl',
     requires => {
         'perl'                 => '5.6.1',
@@ -26,6 +26,7 @@ my $build = Module::Build->new(
         'Moose'                => '0.57',
         'MooseX::App::Cmd'     => '0.06',
         'Template'             => '2.14',
+        'Readonly'             => '0',
         'UNIVERSAL::require'   => '0',
         'YAML::Syck'           => '0.98',
     },

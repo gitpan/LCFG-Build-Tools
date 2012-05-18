@@ -2,19 +2,27 @@ package LCFG::Build::Tool::DevOSXPkg;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: DevOSXPkg.pm.in 5770 2010-01-18 18:08:16Z squinney@INF.ED.AC.UK $
+# $Id: DevOSXPkg.pm.in 20973 2012-05-18 16:54:45Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/DevOSXPkg.pm.in,v $
-# $Revision: 5770 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_2_2/lib/LCFG/Build/Tool/DevOSXPkg.pm.in $
-# $Date: 2010-01-18 18:08:16 +0000 (Mon, 18 Jan 2010) $
+# $Revision: 20973 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool/DevOSXPkg.pm.in $
+# $Date: 2012-05-18 17:54:45 +0100 (Fri, 18 May 2012) $
 
-our $VERSION = '0.2.2';
+our $VERSION = '0.3.1';
 
-use LCFG::Build::Utils::MacOSX;
+use LCFG::Build::Utils::OSXPkg;
 
 use Moose;
 
 extends 'LCFG::Build::Tool::DevPack';
+
+has 'nopayload' => (
+    is            => 'rw',
+    isa           => 'Bool',
+    lazy          => 1,
+    default       => sub { $_[0]->spec->get_buildinfo('nopayload') },
+    documentation => 'Specify no payload in the package',
+);
 
 override 'abstract' => sub {
     return q{Build MacOSX packages from the development source tree};
@@ -23,7 +31,36 @@ override 'abstract' => sub {
 override 'execute' => sub {
     my ($self) = @_;
 
-    $self->fail("Building of MacOSX packages is not yet implemented");
+    super; # packs the source
+
+    my $spec = $self->spec;
+    my $module = $spec->fullname;
+
+    my $dirname = join q{-}, $module, $spec->version;
+    my $outdir = File::Spec->catdir( $self->resultsdir, $dirname );
+
+    my $tarname = $spec->tarname;
+    my $tarfile = File::Spec->catfile( $outdir, $tarname );
+
+    my $pkgident   = $spec->pkgident;
+    my $pkgversion = $spec->version . '.' . $spec->release;
+    my $pkgname    = join q{-}, $spec->fullname, $spec->version, $spec->release;
+
+    my $nopayload = $self->nopayload;
+
+    # Leave @filters as hardwired to ( "usr/lib/lcfg/defaults/server" ) until
+    # we can specify filters in the spec structure (lcfg.yml)
+    # The scripts directory is set to undef for now too.
+    my @filters = ( 'usr/lib/lcfg/defaults/server' );
+    my $result
+      = LCFG::Build::Utils::OSXPkg->build( $outdir, $tarfile, $dirname,
+                                           $pkgname, $pkgversion, $pkgident,
+                                           \@filters, undef, $nopayload );
+
+    $self->log("Successfully built packages for $module");
+    for my $package ( @{ $result->{packages} } ) {
+      $self->log("Package: $package");
+    }
 
     return;
 };
@@ -40,7 +77,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::DevOSXPkg version 0.2.2
+    This documentation refers to LCFG::Build::Tool::DevOSXPkg version 0.3.1
 
 =head1 SYNOPSIS
 
@@ -65,14 +102,9 @@ same time. It is also possible to do limited autoconf-style macro
 substitution prior to the source being packaged. This allows the
 generation of 'pristine' tar files where downstream users will be
 unaware of the additional source-file processing that has been carried
-out prior to distribution. MacOSX packages will then be generated from
-the gzipped source tar file.
-
-This is a tool for producing MacOSX packages from a software project
-which uses the LCFG build tools for release management. Currently this
-module doesn't do much as supporting MacOSX is a work in progress. If
-you have some knowledge of generating MacOSX packages and are
-interested in helping then please get in touch.
+out prior to distribution.  A Mac OS X package will then be generated
+from the gzipped source tar file, assuming CMake is used to build and
+install the project.
 
 More information on the LCFG build tools is available from the website
 http://www.lcfg.org/doc/buildtools/
@@ -148,6 +180,14 @@ foo). The default is to take the setting from
 C<remove_input_after_translate> option in the C<buildinfo> section of
 the LCFG build metadata file.
 
+=item nopayload
+
+This is a boolean value which controls whether the Mac OS X package
+contains a payload, or only scripts to be executed as part of the
+install action.  The default is to take the setting from the
+C<nopayload> option in the C<buildinfo> section of the LCFG build
+metadata file.
+
 =back
 
 The following methods are not modifiable by the command-line, they are
@@ -181,7 +221,7 @@ L<LCFG::Build::Tool::DevPack> to generate a gzipped source tar file
 and the build metadata files for the various supported platforms
 (e.g. a specfile for creating binary RPMs). Once that is done the
 binary packages for MacOSX are created from the source tar file using
-PackageMaker.
+C<CMake> and C<pkgbuild>.
 
 =item fail($message)
 
@@ -205,9 +245,12 @@ required: L<LCFG::Build::Tool::DevPack>, L<LCFG::Build::PkgSpec>,
 L<LCFG::Build::VCS> and VCS helper module for your preferred
 version-control system.
 
+For building packages you will also need
+L<LCFG::Build::Utils::OSXPkg>.
+
 =head1 SEE ALSO
 
-L<LCFG::Build::Tools>, L<LCFG::Build::Skeleton>, lcfg-reltool(1)
+L<LCFG::Build::Tools>, L<LCFG::Build::Skeleton>, lcfg-reltool(1), pkgbuild(1)
 
 =head1 PLATFORMS
 
@@ -215,7 +258,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-Fedora12, Fedora13, ScientificLinux5
+Mac OS X 10.7
 
 =head1 BUGS AND LIMITATIONS
 
@@ -225,11 +268,12 @@ welcome.
 
 =head1 AUTHOR
 
+    Kenneth MacDonald <Kenneth.MacDonald@ed.ac.uk>
     Stephen Quinney <squinney@inf.ed.ac.uk>
 
 =head1 LICENSE AND COPYRIGHT
 
-    Copyright (C) 2008 University of Edinburgh. All rights reserved.
+    Copyright (C) 2008-2012 University of Edinburgh. All rights reserved.
 
 This library is free software; you can redistribute it and/or modify
 it under the terms of the GPL, version 2 or later.

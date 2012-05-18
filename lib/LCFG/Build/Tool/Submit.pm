@@ -2,7 +2,7 @@ package LCFG::Build::Tool::Submit; # -*-perl-*-
 use strict;
 use warnings;
 
-our $VERSION = '0.2.2';
+our $VERSION = '0.3.1';
 
 use File::Find::Rule ();
 use File::Spec ();
@@ -107,7 +107,7 @@ LCFG::Build::Tool::Submit - Tool for submitting RPMs
 
 =head1 VERSION
 
-This documentation refers to LCFG::Build::Tool::Submit version 0.2.2
+This documentation refers to LCFG::Build::Tool::Submit version 0.3.1
 
 =head1 USAGE
 
@@ -234,7 +234,7 @@ This is the list of platforms on which we have tested this
 software. We expect this software to work on any Unix-like platform
 which is supported by Perl.
 
-Fedora12, Fedora13, ScientificLinux5
+Fedora12, Fedora13, ScientificLinux5, ScientificLinux6, MacOSX7
 
 =head1 BUGS AND LIMITATIONS
 
