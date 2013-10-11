@@ -1,6 +1,30 @@
-2012-05-18  SVN: new release
+2013-10-11  SVN: new release
 
-	* Release: 0.3.1
+	* Release: 0.4.0
+
+2013-10-11 12:53  squinney@INF.ED.AC.UK
+
+	* LCFG-Build-Tools.spec, META.yml.in, Makefile.PL, lcfg.yml,
+	  lib/LCFG/Build/Tool.pm.in: Converted the detection of the
+	  revision control system to use the new auto_detect methods
+	  provided by the LCFG::Build::VCS modules in version 0.2.0. This
+	  should fix auto-detection for svn 1.7 and newer, see
+	  https://bugs.lcfg.org/show_bug.cgi?id=685
+
+2013-05-14 08:12  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Tool/CheckMacros.pm.in: Added new macros to the
+	  basic list
+
+2013-05-14 08:09  squinney@INF.ED.AC.UK
+
+	* lcfg_config.yml: Added BOOTSTAMP and RELEASEFILE. This is
+	  primarily for building the LCFG client but other things might
+	  benefit as well
+
+2012-05-18 17:03  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.3.1
 
 2012-05-18 17:03  squinney@INF.ED.AC.UK
 

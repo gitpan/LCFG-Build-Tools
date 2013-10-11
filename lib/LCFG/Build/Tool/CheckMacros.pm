@@ -2,13 +2,13 @@ package LCFG::Build::Tool::CheckMacros;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: CheckMacros.pm.in 18477 2011-11-09 12:46:54Z squinney@INF.ED.AC.UK $
+# $Id: CheckMacros.pm.in 23323 2013-05-14 08:12:39Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/CheckMacros.pm.in,v $
-# $Revision: 18477 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool/CheckMacros.pm.in $
-# $Date: 2011-11-09 12:46:54 +0000 (Wed, 09 Nov 2011) $
+# $Revision: 23323 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Tool/CheckMacros.pm.in $
+# $Date: 2013-05-14 09:12:39 +0100 (Tue, 14 May 2013) $
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.4.0';
 
 use File::Spec ();
 use File::Temp ();
@@ -60,6 +60,7 @@ my %basic = map { $_ => 'basic' } qw(
     LCFG_LICENSE
     LCFG_TARNAME
     LCFG_CHANGELOG
+    BOOTSTAMP
     INITDIR
     LCFGBIB
     LCFGBIN
@@ -88,6 +89,7 @@ my %basic = map { $_ => 'basic' } qw(
     LIBMANSECT
     MANDIR
     MANSECT
+    RELEASEFILE
 );
 
 my %deprecated = (
@@ -301,7 +303,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.3.1
+    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.4.0
 
 =head1 SYNOPSIS
 

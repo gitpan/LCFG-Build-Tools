@@ -1,15 +1,15 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.3.1
+Version:        0.4.0
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.3.1.tar.gz
+Source0:        LCFG-Build-Tools-0.4.0.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
 BuildRequires:  perl(LCFG::Build::PkgSpec) >= 0.0.22
-BuildRequires:  perl(LCFG::Build::VCS) >= 0.0.19
+BuildRequires:  perl(LCFG::Build::VCS) >= 0.2.0
 BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(Module::Pluggable)
 BuildRequires:  perl(File::HomeDir) >= 0.58
@@ -22,7 +22,7 @@ BuildRequires:  perl(UNIVERSAL::require)
 BuildRequires:  perl(Test::Differences), perl(Test::More)
 BuildRequires:  perl(DateTime), perl(Readonly)
 Requires:       perl(LCFG::Build::PkgSpec) >= 0.0.22
-Requires:       perl(LCFG::Build::VCS) >= 0.0.19
+Requires:       perl(LCFG::Build::VCS) >= 0.2.0
 Requires:       perl(YAML::Syck) >= 0.98
 Requires:       perl(File::Find::Rule)
 Requires:       perl(Template) >= 2.14
@@ -90,8 +90,28 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri May 18 2012 SVN: new release
-- Release: 0.3.1
+* Fri Oct 11 2013 SVN: new release
+- Release: 0.4.0
+
+* Fri Oct 11 2013 12:53 squinney@INF.ED.AC.UK
+- LCFG-Build-Tools.spec, META.yml.in, Makefile.PL, lcfg.yml,
+  lib/LCFG/Build/Tool.pm.in: Converted the detection of the
+  revision control system to use the new auto_detect methods
+  provided by the LCFG::Build::VCS modules in version 0.2.0. This
+  should fix auto-detection for svn 1.7 and newer, see
+  https://bugs.lcfg.org/show_bug.cgi?id=685
+
+* Tue May 14 2013 08:12 squinney@INF.ED.AC.UK
+- lib/LCFG/Build/Tool/CheckMacros.pm.in: Added new macros to the
+  basic list
+
+* Tue May 14 2013 08:09 squinney@INF.ED.AC.UK
+- lcfg_config.yml: Added BOOTSTAMP and RELEASEFILE. This is
+  primarily for building the LCFG client but other things might
+  benefit as well
+
+* Fri May 18 2012 17:03 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.3.1
 
 * Fri May 18 2012 17:03 squinney@INF.ED.AC.UK
 - Build.PL.in, LCFG-Build-Tools.spec, META.yml.in, Makefile.PL,

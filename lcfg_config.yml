@@ -1,5 +1,9 @@
 # Variables describing the standard LCFG layout
 
+BOOTSTAMP:
+  value: /var/run/bootstamp
+  description: "last boot time-stamp marker file"
+  type: file
 LCFGLIB:
   value: /usr/lib/lcfg
   description: "Base directory for read-only files"
@@ -112,3 +116,7 @@ INITDIR:
   value: /etc/init.d
   description: Location of init scripts directory
   type: directory
+RELEASEFILE:
+  value: /etc/LCFG-RELEASE
+  description: "The LCFG platform release file"
+  type: file

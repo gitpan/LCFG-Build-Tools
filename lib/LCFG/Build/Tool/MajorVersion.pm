@@ -5,10 +5,10 @@ use warnings;
 # $Id: MajorVersion.pm.in 5770 2010-01-18 18:08:16Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MajorVersion.pm.in,v $
 # $Revision: 5770 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool/MajorVersion.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Tool/MajorVersion.pm.in $
 # $Date: 2010-01-18 18:08:16 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.4.0';
 
 use Moose;
 
@@ -36,7 +36,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MajorVersion version 0.3.1
+    This documentation refers to LCFG::Build::Tool::MajorVersion version 0.4.0
 
 =head1 SYNOPSIS
 

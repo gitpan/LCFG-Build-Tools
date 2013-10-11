@@ -5,10 +5,10 @@ use warnings;
 # $Id: RPM.pm.in 16250 2011-03-03 20:30:10Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/RPM.pm.in,v $
 # $Revision: 16250 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Utils/RPM.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Utils/RPM.pm.in $
 # $Date: 2011-03-03 20:30:10 +0000 (Thu, 03 Mar 2011) $
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.4.0';
 
 use DateTime   ();
 use English qw(-no_match_vars);
@@ -275,7 +275,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::RPM version 0.3.1
+    This documentation refers to LCFG::Build::Utils::RPM version 0.4.0
 
 =head1 SYNOPSIS
 

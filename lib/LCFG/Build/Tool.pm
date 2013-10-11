@@ -2,18 +2,20 @@ package LCFG::Build::Tool;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: Tool.pm.in 15911 2011-02-17 18:13:02Z squinney@INF.ED.AC.UK $
+# $Id: Tool.pm.in 23959 2013-10-11 12:53:58Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool.pm.in,v $
-# $Revision: 15911 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_3_1/lib/LCFG/Build/Tool.pm.in $
-# $Date: 2011-02-17 18:13:02 +0000 (Thu, 17 Feb 2011) $
+# $Revision: 23959 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Tool.pm.in $
+# $Date: 2013-10-11 13:53:58 +0100 (Fri, 11 Oct 2013) $
 
-our $VERSION = '0.3.1';
+our $VERSION = '0.4.0';
 
 use File::HomeDir;
 use File::Spec;
 use LCFG::Build::PkgSpec;
 use UNIVERSAL::require;
+
+my $VCS_STUB = 'LCFG::Build::VCS::';
 
 use Moose;
 
@@ -89,14 +91,15 @@ sub _load_vcs_module {
         # have not yet come up with a simple method to provide support
         # for any/all version-control systems.
 
-        my %metadirs = ( CVS    => 'CVS',
-                         '.svn' => 'SVN' );
+        my @modules = ( 'SVN', 'CVS' );
 
-        for my $metadir ( keys %metadirs ) {
-            my $dir = File::Spec->catdir( $self->dir, $metadir );
-            if ( -d $dir ) {
-                $vcstype = $metadirs{$metadir};
-            }
+
+        for my $module (@modules) {
+          my $vcs = $VCS_STUB . $module;
+          if ( $vcs->require && $vcs->auto_detect($self->dir) ) {
+            $vcstype = $module;
+            last;
+          }
         }
 
         if ( !$vcstype ) {
@@ -106,7 +109,7 @@ sub _load_vcs_module {
         warn "Auto-detected that the $vcstype module should be used.\n";
     }
 
-    my $vcsmodule = 'LCFG::Build::VCS::' . $vcstype;
+    my $vcsmodule = $VCS_STUB . $vcstype;
 
     $vcsmodule->require or die $@;
 
@@ -163,7 +166,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool version 0.3.1
+    This documentation refers to LCFG::Build::Tool version 0.4.0
 
 =head1 SYNOPSIS
 
@@ -190,7 +193,7 @@ created. Unless stated the options take strings as arguments and can
 be used like C<--foo=bar>. Boolean options can be expressed as either
 C<--foo> or C<--no-foo> to signify true and false values.
 
-=over 4
+=over
 
 =item dryrun
 
@@ -238,7 +241,7 @@ necessary. Typically you will only need to query these attributes,
 they are automatically created when you need them using values for
 some of the other command-line attributes.
 
-=over 4
+=over
 
 =item spec
 
@@ -254,7 +257,7 @@ L<LCFG::Build::VCS> and associated helper modules for full details.
 
 =head1 SUBROUTINES/METHODS
 
-=over 4
+=over
 
 =item run
 
@@ -305,7 +308,7 @@ welcome.
 
 =head1 LICENSE AND COPYRIGHT
 
-    Copyright (C) 2008 University of Edinburgh. All rights reserved.
+    Copyright (C) 2008-2013 University of Edinburgh. All rights reserved.
 
 This library is free software; you can redistribute it and/or modify
 it under the terms of the GPL, version 2 or later.
