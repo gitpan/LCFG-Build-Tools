@@ -2,7 +2,7 @@ package LCFG::Build::Tool::Submit; # -*-perl-*-
 use strict;
 use warnings;
 
-our $VERSION = '0.4.0';
+our $VERSION = '0.4.4';
 
 use File::Find::Rule ();
 use File::Spec ();
@@ -107,7 +107,7 @@ LCFG::Build::Tool::Submit - Tool for submitting RPMs
 
 =head1 VERSION
 
-This documentation refers to LCFG::Build::Tool::Submit version 0.4.0
+This documentation refers to LCFG::Build::Tool::Submit version 0.4.4
 
 =head1 USAGE
 

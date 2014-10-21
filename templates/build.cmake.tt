@@ -75,7 +75,10 @@ MACRO(lcfg_pod2man podfile manfile section)
     EXECUTE_PROCESS(COMMAND ${POD2MAN} --section="${section}" --release="Release: ${LCFG_VERSION}" --date="${LCFG_DATE}" ${podfile} ${outfile})
   ENDIF(LCFG_GROUP)
 
-  lcfg_add_man(${outfile} ${section})
+  IF(EXISTS ${outfile})
+    lcfg_add_man(${outfile} ${section})
+  ENDIF(EXISTS ${outfile})
+
 ENDMACRO(lcfg_pod2man)
 
 MACRO(lcfg_add_pod podfile manfile section)

@@ -5,10 +5,10 @@ use warnings;
 # $Id: MicroVersion.pm.in 5770 2010-01-18 18:08:16Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/MicroVersion.pm.in,v $
 # $Revision: 5770 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Tool/MicroVersion.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_4/lib/LCFG/Build/Tool/MicroVersion.pm.in $
 # $Date: 2010-01-18 18:08:16 +0000 (Mon, 18 Jan 2010) $
 
-our $VERSION = '0.4.0';
+our $VERSION = '0.4.4';
 
 use Moose;
 
@@ -134,7 +134,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::MicroVersion version 0.4.0
+    This documentation refers to LCFG::Build::Tool::MicroVersion version 0.4.4
 
 =head1 SYNOPSIS
 

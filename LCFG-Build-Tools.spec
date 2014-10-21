@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.4.0
+Version:        0.4.4
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.4.0.tar.gz
+Source0:        LCFG-Build-Tools-0.4.4.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -19,7 +19,7 @@ BuildRequires:  perl(Template) >= 2.14
 BuildRequires:  perl(Archive::Tar), perl(IO::Zlib)
 BuildRequires:  perl(MooseX::App::Cmd) >= 0.06
 BuildRequires:  perl(UNIVERSAL::require)
-BuildRequires:  perl(Test::Differences), perl(Test::More)
+BuildRequires:  perl(Test::Differences), perl(Test::More), perl(Test::Exception)
 BuildRequires:  perl(DateTime), perl(Readonly)
 Requires:       perl(LCFG::Build::PkgSpec) >= 0.0.22
 Requires:       perl(LCFG::Build::VCS) >= 0.2.0
@@ -90,8 +90,36 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Fri Oct 11 2013 SVN: new release
-- Release: 0.4.0
+* Wed Jul 02 2014 SVN: new release
+- Release: 0.4.4
+
+* Wed Jul 02 2014 07:38 squinney@INF.ED.AC.UK
+- templates/lcfg.cmake.tt: Added CentOS support
+
+* Tue Jul 01 2014 16:05 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.3
+
+* Tue Jul 01 2014 16:05 squinney@INF.ED.AC.UK
+- LCFG-Build-Tools.spec: Added missing build dep
+
+* Tue Jul 01 2014 16:01 squinney@INF.ED.AC.UK
+- templates/lcfg.cmake.tt: Added support for detecting RHEL release
+
+* Tue Apr 01 2014 14:43 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.2
+
+* Tue Apr 01 2014 14:43 squinney@INF.ED.AC.UK
+- templates/build.cmake.tt: fixed missing closing brackets
+
+* Tue Apr 01 2014 14:42 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.1
+
+* Tue Apr 01 2014 14:42 squinney@INF.ED.AC.UK
+- templates/build.cmake.tt: only attempt to install a man page
+  created using pod2man if it actually generated a file
+
+* Fri Oct 11 2013 12:54 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.0
 
 * Fri Oct 11 2013 12:53 squinney@INF.ED.AC.UK
 - LCFG-Build-Tools.spec, META.yml.in, Makefile.PL, lcfg.yml,

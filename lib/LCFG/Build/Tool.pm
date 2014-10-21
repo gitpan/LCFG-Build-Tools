@@ -5,10 +5,10 @@ use warnings;
 # $Id: Tool.pm.in 23959 2013-10-11 12:53:58Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool.pm.in,v $
 # $Revision: 23959 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Tool.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_4/lib/LCFG/Build/Tool.pm.in $
 # $Date: 2013-10-11 13:53:58 +0100 (Fri, 11 Oct 2013) $
 
-our $VERSION = '0.4.0';
+our $VERSION = '0.4.4';
 
 use File::HomeDir;
 use File::Spec;
@@ -166,7 +166,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool version 0.4.0
+    This documentation refers to LCFG::Build::Tool version 0.4.4
 
 =head1 SYNOPSIS
 

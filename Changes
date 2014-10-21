@@ -1,6 +1,43 @@
-2013-10-11  SVN: new release
+2014-07-02  SVN: new release
 
-	* Release: 0.4.0
+	* Release: 0.4.4
+
+2014-07-02 07:38  squinney@INF.ED.AC.UK
+
+	* templates/lcfg.cmake.tt: Added CentOS support
+
+2014-07-01 16:05  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.3
+
+2014-07-01 16:05  squinney@INF.ED.AC.UK
+
+	* LCFG-Build-Tools.spec: Added missing build dep
+
+2014-07-01 16:01  squinney@INF.ED.AC.UK
+
+	* templates/lcfg.cmake.tt: Added support for detecting RHEL release
+
+2014-04-01 14:43  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.2
+
+2014-04-01 14:43  squinney@INF.ED.AC.UK
+
+	* templates/build.cmake.tt: fixed missing closing brackets
+
+2014-04-01 14:42  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.1
+
+2014-04-01 14:42  squinney@INF.ED.AC.UK
+
+	* templates/build.cmake.tt: only attempt to install a man page
+	  created using pod2man if it actually generated a file
+
+2013-10-11 12:54  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.0
 
 2013-10-11 12:53  squinney@INF.ED.AC.UK
 

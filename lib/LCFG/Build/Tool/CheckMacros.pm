@@ -5,10 +5,10 @@ use warnings;
 # $Id: CheckMacros.pm.in 23323 2013-05-14 08:12:39Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Tool/CheckMacros.pm.in,v $
 # $Revision: 23323 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_0/lib/LCFG/Build/Tool/CheckMacros.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_4/lib/LCFG/Build/Tool/CheckMacros.pm.in $
 # $Date: 2013-05-14 09:12:39 +0100 (Tue, 14 May 2013) $
 
-our $VERSION = '0.4.0';
+our $VERSION = '0.4.4';
 
 use File::Spec ();
 use File::Temp ();
@@ -303,7 +303,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.4.0
+    This documentation refers to LCFG::Build::Tool::CheckMacros version 0.4.4
 
 =head1 SYNOPSIS
 
