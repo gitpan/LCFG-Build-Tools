@@ -1,10 +1,10 @@
 Name:           perl-LCFG-Build-Tools
-Version:        0.4.4
+Version:        0.4.5
 Release:        1
 Summary:        LCFG build system tools
 License:        gpl
 Group:          Development/Libraries
-Source0:        LCFG-Build-Tools-0.4.4.tar.gz
+Source0:        LCFG-Build-Tools-0.4.5.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 BuildRequires:  perl >= 1:5.6.1
@@ -90,8 +90,15 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/lcfg-reltool
 
 %changelog
-* Wed Jul 02 2014 SVN: new release
-- Release: 0.4.4
+* Fri Oct 31 2014 SVN: new release
+- Release: 0.4.5
+
+* Fri Oct 31 2014 10:52 squinney@INF.ED.AC.UK
+- lib/LCFG/Build/Utils/OSXPkg.pm.in: Fixed exit with a warning
+  about the tmp dir, bug#791
+
+* Wed Jul 02 2014 07:38 squinney@INF.ED.AC.UK
+- Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.4
 
 * Wed Jul 02 2014 07:38 squinney@INF.ED.AC.UK
 - templates/lcfg.cmake.tt: Added CentOS support

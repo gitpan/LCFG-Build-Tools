@@ -5,10 +5,10 @@ use warnings;
 # $Id: Utils.pm.in 12955 2010-07-20 13:13:37Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils.pm.in,v $
 # $Revision: 12955 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_4/lib/LCFG/Build/Utils.pm.in $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_5/lib/LCFG/Build/Utils.pm.in $
 # $Date: 2010-07-20 14:13:37 +0100 (Tue, 20 Jul 2010) $
 
-our $VERSION = '0.4.4';
+our $VERSION = '0.4.5';
 
 use Cwd ();
 use File::Basename ();
@@ -358,7 +358,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils version 0.4.4
+    This documentation refers to LCFG::Build::Utils version 0.4.5
 
 =head1 SYNOPSIS
 

@@ -2,13 +2,13 @@ package LCFG::Build::Utils::OSXPkg;    # -*-cperl-*-
 use strict;
 use warnings;
 
-# $Id: OSXPkg.pm.in 20973 2012-05-18 16:54:45Z squinney@INF.ED.AC.UK $
+# $Id: OSXPkg.pm.in 26631 2014-10-31 10:52:42Z squinney@INF.ED.AC.UK $
 # $Source: /var/cvs/dice/LCFG-Build-Tools/lib/LCFG/Build/Utils/MacOSX.pm.in,v $
-# $Revision: 20973 $
-# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_4/lib/LCFG/Build/Utils/OSXPkg.pm.in $
-# $Date: 2012-05-18 17:54:45 +0100 (Fri, 18 May 2012) $
+# $Revision: 26631 $
+# $HeadURL: https://svn.lcfg.org/svn/source/tags/LCFG-Build-Tools/LCFG_Build_Tools_0_4_5/lib/LCFG/Build/Utils/OSXPkg.pm.in $
+# $Date: 2014-10-31 10:52:42 +0000 (Fri, 31 Oct 2014) $
 
-our $VERSION = '0.4.4';
+our $VERSION = '0.4.5';
 
 use File::Copy ();
 use File::Spec ();
@@ -39,6 +39,8 @@ sub build {
   if ( !$tar_ok ) {
     die "Failed to extract '$tarfile': " . $tar->error . "\n";
   }
+
+  my $prev_dir = Cwd::getcwd(); # will need to go back to this later
 
   chdir $dirname or
     die "Failed to change directory into $dirname - check tar file.";
@@ -97,6 +99,8 @@ sub build {
     die "Cannot find expected package: '$filename'.\n";
   }
 
+  chdir $prev_dir;
+
   my @packages = ( $filename );
   return {
 	  packages => \@packages
@@ -112,7 +116,7 @@ __END__
 
 =head1 VERSION
 
-    This documentation refers to LCFG::Build::Utils::OSXPkg version 0.4.4
+    This documentation refers to LCFG::Build::Utils::OSXPkg version 0.4.5
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,15 @@
-2014-07-02  SVN: new release
+2014-10-31  SVN: new release
 
-	* Release: 0.4.4
+	* Release: 0.4.5
+
+2014-10-31 10:52  squinney@INF.ED.AC.UK
+
+	* lib/LCFG/Build/Utils/OSXPkg.pm.in: Fixed exit with a warning
+	  about the tmp dir, bug#791
+
+2014-07-02 07:38  squinney@INF.ED.AC.UK
+
+	* Changes, lcfg.yml: LCFG-Build-Tools release: 0.4.4
 
 2014-07-02 07:38  squinney@INF.ED.AC.UK
 
